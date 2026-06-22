@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Án lệ Việt Nam — Tổng hợp 90 án lệ</title>
+<style>
+  :root{
+    --ink:#1b2330; --muted:#5b6675; --line:#e6e9ef; --soft:#eef1f7; --card:#ffffff;
+    --hs:#e0392b; --ds:#2f6bff; --hn:#e23b86; --kd:#08a87a; --ld:#8b3df0; --hc:#e08a00;
+    --accent:#2f6bff;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+       color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased;background:#0c1322;overflow-x:hidden}
+
+  /* ---------- animated aurora backdrop ---------- */
+  .bgfx{position:fixed;inset:0;z-index:-2;background:
+     radial-gradient(60% 50% at 15% 0%, #1f3b73 0%, transparent 60%),
+     radial-gradient(55% 45% at 90% 5%, #5a2b7a 0%, transparent 55%),
+     radial-gradient(50% 40% at 50% 100%, #0e3a52 0%, transparent 60%),
+     linear-gradient(180deg,#0c1322 0%, #0e1526 100%);}
+  .blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.55;z-index:-1;mix-blend-mode:screen;animation:float 18s ease-in-out infinite}
+  .blob.b1{width:420px;height:420px;background:#2f6bff;top:-120px;left:-80px}
+  .blob.b2{width:380px;height:380px;background:#e23b86;top:-60px;right:-60px;animation-delay:-6s}
+  .blob.b3{width:360px;height:360px;background:#08a87a;top:240px;left:40%;animation-delay:-11s;opacity:.4}
+  @keyframes float{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,30px) scale(1.08)}66%{transform:translate(-30px,20px) scale(.95)}}
+
+  .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+
+  /* ---------- hero ---------- */
+  header.top{padding:54px 20px 40px;color:#fff;position:relative}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.5px;
+     background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);padding:7px 14px;border-radius:999px;backdrop-filter:blur(6px);text-transform:uppercase;color:#cfe0ff}
+  header.top h1{margin:16px 0 8px;font-size:clamp(30px,5vw,46px);font-weight:850;letter-spacing:-.5px;line-height:1.05;
+     background:linear-gradient(100deg,#ffffff 0%,#bcd2ff 45%,#9be8d2 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  header.top .ic{display:inline-block;animation:bob 4s ease-in-out infinite;-webkit-text-fill-color:initial;filter:drop-shadow(0 6px 18px rgba(0,0,0,.4))}
+  @keyframes bob{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+  header.top p.sub{margin:0;color:#c7d3e8;font-size:15.5px;max-width:780px}
+  .countline{margin-top:24px;display:flex;flex-wrap:wrap;gap:14px;perspective:900px}
+  .bigstat{position:relative;background:linear-gradient(160deg,rgba(255,255,255,.16),rgba(255,255,255,.05));
+     border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:14px 22px;backdrop-filter:blur(10px);
+     transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  .bigstat:hover{transform:translateY(-4px) rotateX(8deg);box-shadow:0 20px 44px rgba(0,0,0,.4)}
+  .bigstat b{display:block;font-size:30px;font-weight:850;line-height:1;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+  .bigstat span{font-size:12.5px;color:#bccbe6}
+
+  /* ---------- sticky controls ---------- */
+  .stickybar{position:sticky;top:0;z-index:40;margin-top:6px;
+     background:rgba(15,21,38,.72);backdrop-filter:blur(14px) saturate(140%);border-top:1px solid rgba(255,255,255,.08);
+     border-bottom:1px solid rgba(255,255,255,.10);padding:14px 0;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  .controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+  #search{flex:1;min-width:220px;padding:12px 16px;border:1px solid rgba(255,255,255,.16);border-radius:12px;font-size:14.5px;
+     background:rgba(255,255,255,.07);color:#fff;transition:.2s}
+  #search::placeholder{color:#9fb0cc}
+  #search:focus{outline:none;border-color:var(--accent);background:rgba(255,255,255,.12);box-shadow:0 0 0 4px rgba(47,107,255,.25)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.05);color:#c7d3e8;padding:8px 13px;border-radius:999px;
+     font-size:13px;cursor:pointer;font-weight:650;transition:.18s;white-space:nowrap;user-select:none}
+  .chip:hover{border-color:var(--accent);color:#fff;transform:translateY(-1px)}
+  .chip.on{background:#fff;color:#10203b;border-color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+  .chip .n{opacity:.65;font-weight:800}
+  .chip.st.on{background:linear-gradient(120deg,#2f6bff,#5a8bff);color:#fff;border-color:transparent}
+  .dotc{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;vertical-align:middle}
+
+  main{padding:30px 0 70px;position:relative}
+  .resinfo{color:#aebbd4;font-size:13.5px;margin:0 0 20px}
+  .group{margin-bottom:40px}
+  .ghead{display:flex;align-items:center;gap:12px;margin:0 0 18px}
+  .gdot{width:16px;height:16px;border-radius:5px;box-shadow:0 0 18px 2px currentColor}
+  .ghead h2{margin:0;font-size:22px;font-weight:850;color:#fff;letter-spacing:-.2px}
+  .ghead .gc{color:#9fb0cc;font-size:13.5px;font-weight:650}
+  .ghead .gline{flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,currentColor,transparent)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(345px,1fr));gap:18px;perspective:1400px}
+
+  .card{--fc:#2f6bff;position:relative;background:var(--card);border-radius:16px;padding:18px 18px 16px;
+     border:1px solid var(--line);
+     box-shadow:0 6px 18px rgba(5,10,25,.28);
+     transform-style:preserve-3d;transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s;
+     will-change:transform;animation:cardIn .55s ease both;overflow:hidden}
+  @keyframes cardIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  .card::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+     background:radial-gradient(380px circle at var(--mx,50%) var(--my,15%), color-mix(in srgb,var(--fc) 22%, transparent), transparent 45%);
+     opacity:0;transition:opacity .35s;z-index:1}
+  .card:hover::before{opacity:1}
+  .card::after{content:"";position:absolute;left:0;top:0;height:100%;width:6px;border-radius:16px 0 0 16px;
+     background:linear-gradient(180deg,var(--fc),color-mix(in srgb,var(--fc) 55%, #000));box-shadow:0 0 16px color-mix(in srgb,var(--fc) 60%, transparent)}
+  .card:hover{box-shadow:0 26px 60px -12px color-mix(in srgb,var(--fc) 45%, rgba(5,10,25,.5))}
+  .card>*{position:relative;z-index:2}
+
+  .crow{display:flex;align-items:center;gap:9px;margin-bottom:10px;flex-wrap:wrap}
+  .num{font-weight:850;font-size:12.5px;color:#fff;border-radius:9px;padding:5px 11px;letter-spacing:.2px;
+     background:linear-gradient(145deg,var(--fc),color-mix(in srgb,var(--fc) 60%, #000));
+     box-shadow:inset 0 1px 0 rgba(255,255,255,.45), 0 6px 14px -4px color-mix(in srgb,var(--fc) 70%, transparent);
+     transform:translateZ(28px)}
+  .ftag{font-size:11px;font-weight:750;padding:4px 10px;border-radius:999px;border:1.5px solid var(--fc);color:var(--fc);background:color-mix(in srgb,var(--fc) 8%, #fff)}
+  .stat{font-size:10.5px;font-weight:800;padding:4px 10px;border-radius:999px;margin-left:auto;display:inline-flex;align-items:center;gap:6px;letter-spacing:.2px}
+  .stat.active{background:#e7f7ee;color:#0a7a47;border:1px solid #b6e6cd}
+  .stat.upcoming{background:#fff2dd;color:#a85f06;border:1px solid #f3d199}
+  .stat .pdot{width:7px;height:7px;border-radius:50%;background:currentColor;animation:pulse 1.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 currentColor;opacity:1}70%{box-shadow:0 0 0 6px transparent;opacity:.6}100%{opacity:1}}
+
+  .card h3{margin:3px 0 12px;font-size:15.5px;font-weight:780;line-height:1.42;color:#16203a;transform:translateZ(18px)}
+  .blk{margin:0 0 10px}.blk:last-child{margin-bottom:0}
+  .lbl{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:850;letter-spacing:.7px;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+  .blk p{margin:0;font-size:13.4px;color:#36414f}
+  .issue{background:color-mix(in srgb,var(--fc) 7%, #fff);border:1px solid color-mix(in srgb,var(--fc) 22%, #fff);border-radius:10px;padding:8px 11px}
+  .issue .lbl{color:var(--fc)}
+  .issue p{color:#2c3646;font-weight:560}
+  .laws{background:#f5f7fb;border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+  .laws p{font-size:12.8px;color:#2a3340}
+  .hold{border-left:3px solid var(--fc);padding:2px 0 2px 11px}
+  .hold p{font-weight:560;color:#1f2a3a}
+  .pending{color:#a85f06;font-style:italic}
+
+  footer{background:#0a1120;color:#9fb0cc;padding:34px 0 46px;font-size:13px;border-top:1px solid rgba(255,255,255,.08)}
+  footer h4{color:#fff;margin:0 0 8px;font-size:15px}
+  footer ul{margin:6px 0 0;padding-left:18px}footer li{margin:4px 0}
+  footer .disc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 17px;margin-bottom:18px;color:#bccadf}
+  .noresult{text-align:center;color:#aebbd4;padding:60px 0;font-size:15px}
+  .backtop{position:fixed;right:20px;bottom:20px;background:linear-gradient(145deg,#2f6bff,#5a8bff);color:#fff;border:none;width:48px;height:48px;
+     border-radius:50%;font-size:20px;cursor:pointer;box-shadow:0 10px 26px rgba(47,107,255,.5);display:none;z-index:50;transition:transform .2s}
+  .backtop:hover{transform:translateY(-3px) scale(1.06)}
+  @media(max-width:640px){.grid{grid-template-columns:1fr;perspective:none}.card{transform:none!important}.bigstat b{font-size:24px}}
+  @media(prefers-reduced-motion:reduce){.blob,.card,.ic{animation:none!important}.card{transition:none}}
+</style>
+</head>
+<body>
+<div class="bgfx"></div><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<header class="top">
+  <div class="wrap">
+    <span class="hero-badge">⚖️ Hội đồng Thẩm phán TAND Tối cao</span>
+    <h1><span class="ic">📚</span> Án lệ Việt Nam</h1>
+    <p class="sub">Tổng hợp toàn bộ án lệ — lĩnh vực, vấn đề pháp lý, tóm tắt vụ việc, quy định pháp luật được áp dụng và kết luận của Tòa án. Dữ liệu cập nhật <b>21/6/2026</b> · <span id="dynNote"></span></p>
+    <div class="countline" id="countline"></div>
+  </div>
+</header>
+
+<div class="stickybar">
+  <div class="wrap">
+    <div class="controls"><input id="search" type="text" placeholder="🔍 Tìm theo số án lệ, từ khóa, tội danh, điều luật…" autocomplete="off"></div>
+    <div class="controls" style="margin-top:10px"><div class="chips" id="fieldChips"></div></div>
+    <div class="controls" style="margin-top:8px"><div class="chips" id="statusChips"></div></div>
+  </div>
+</div>
+
+<main><div class="wrap">
+  <p class="resinfo" id="resinfo"></p>
+  <div id="content"></div>
+  <div class="noresult" id="noresult" style="display:none">Không tìm thấy án lệ phù hợp. Thử từ khóa khác.</div>
+</div></main>
+
+<footer><div class="wrap">
+  <div class="disc"><strong>⚠️ Lưu ý sử dụng:</strong> Đây là bản tổng hợp tham khảo, <b>không thay thế</b> bản án lệ chính thức của Tòa án nhân dân tối cao. Nội dung là tóm tắt; điều luật trích từ mục “Quy định của pháp luật liên quan đến án lệ”. Nhiều án lệ viện dẫn luật tại thời điểm xét xử (BLDS 2005, BLHS 1999, BLLĐ 2012…) kèm điều tương ứng của luật hiện hành — bản thân án lệ vẫn còn hiệu lực. Một số án lệ mới (số 86 và 89/2026) đang được cập nhật số điều cụ thể. <b>Trạng thái hiệu lực tự cập nhật theo ngày:</b> từ 01/7/2026 nhóm án lệ 83–90 tự chuyển thành “Đang áp dụng”. Khi áp dụng, vui lòng tra cứu toàn văn tại <b>anle.toaan.gov.vn</b>.</div>
+  <h4>Nguồn dữ liệu</h4>
+  <ul>
+    <li>Cổng thông tin điện tử Án lệ — TANDTC (anle.toaan.gov.vn); Tạp chí Tòa án nhân dân (tapchitoaan.vn)</li>
+    <li>Thư viện pháp luật, LuatVietnam, LSVN, Báo Pháp Luật TP.HCM (plo.vn) và các bản công bố/bình luận án lệ</li>
+    <li>QĐ 162/QĐ-CA ngày 29/5/2026 (án lệ 83–90, áp dụng 01/7/2026); QĐ 339a/QĐ-CA ngày 25/12/2025 (án lệ 73–82, áp dụng 01/02/2026)</li>
+  </ul>
+  <p style="margin-top:16px;opacity:.7">Tạo bởi hệ thống Polaris · Tổng 90 án lệ (01/2016/AL → 90/2026/AL)</p>
+</div></footer>
+<button class="backtop" id="backtop" title="Lên đầu trang">↑</button>
+
+<script>
+const FIELDS=[
+ {key:'Hình sự',color:'#e0392b'},{key:'Dân sự',color:'#2f6bff'},{key:'Hôn nhân & gia đình',color:'#e23b86'},
+ {key:'Kinh doanh thương mại',color:'#08a87a'},{key:'Lao động',color:'#8b3df0'},{key:'Hành chính',color:'#e08a00'}];
+const COLOR={}; FIELDS.forEach(f=>COLOR[f.key]=f.color);
+
+// up:true => nhóm 83–90 áp dụng từ 01/7/2026. Trạng thái tính động theo ngày.
+const AL=[
+{n:1,code:'01/2016/AL',field:'Hình sự',up:false,title:'Giết người — phân biệt với cố ý gây thương tích dẫn đến chết người (đồng phạm)',
+summary:'Bị cáo chủ mưu thuê người khác dùng dao đâm vào chân, tay nạn nhân nhằm gây thương tích để trả thù, không có ý định tước đoạt tính mạng. Người thực hành làm đúng yêu cầu nhưng nạn nhân chết — hậu quả nằm ngoài ý thức chủ quan của người chủ mưu. Vấn đề: định tội "Giết người" hay "Cố ý gây thương tích dẫn đến chết người" cho người chủ mưu.',
+laws:'Điểm m, n khoản 1 Điều 93; khoản 3 Điều 104 Bộ luật Hình sự 1999.',
+hold:'Nếu chứng minh chủ mưu chỉ thuê gây thương tích, không nhằm tước đoạt tính mạng; người thực hành làm đúng yêu cầu; nạn nhân chết nằm ngoài ý thức chủ quan của chủ mưu → chủ mưu chịu TNHS về tội "Cố ý gây thương tích" với tình tiết "dẫn đến chết người".'},
+{n:2,code:'02/2016/AL',field:'Dân sự',up:false,title:'Đòi lại tài sản — Việt kiều nhờ người trong nước đứng tên đất',
+summary:'Người Việt Nam định cư ở nước ngoài bỏ tiền nhận chuyển nhượng quyền sử dụng đất nhưng nhờ người thân trong nước đứng tên hộ. Sau đó hai bên phát sinh tranh chấp.',
+issue:'Người bỏ tiền nhờ đứng tên khởi kiện đòi lại quyền sử dụng đất; yêu cầu Tòa xác định quyền và cách phân chia phần giá trị tăng thêm so với tiền gốc.',
+laws:'Điều 137 và Điều 235 Bộ luật Dân sự 2005.',
+hold:'Tòa phải tính công sức bảo quản, giữ gìn, tôn tạo làm tăng giá trị đất cho người đứng tên hộ. Không xác định được chính xác công sức thì coi hai bên ngang nhau để chia phần giá trị chênh lệch tăng thêm so với tiền gốc.'},
+{n:3,code:'03/2016/AL',field:'Hôn nhân & gia đình',up:false,title:'Ly hôn — tài sản cha mẹ tặng cho vợ chồng trong thời kỳ hôn nhân',
+summary:'Đất và nhà tranh chấp có nguồn gốc cha mẹ chồng tặng cho trong thời kỳ hôn nhân, không có giấy tờ thể hiện tặng riêng cho người con trai.',
+issue:'Vợ/chồng yêu cầu ly hôn và chia tài sản chung; tranh chấp tài sản cha mẹ tặng cho là tài sản chung hay riêng và cách chia.',
+laws:'Điều 14 Luật Hôn nhân và gia đình 1986; Điều 242 và khoản 2 Điều 176 Bộ luật Dân sự 1995.',
+hold:'Cha mẹ tặng cho đất cho vợ chồng người con mà không có chứng cứ tặng riêng → là tài sản chung. Khi chia căn cứ công sức đóng góp và nhu cầu chỗ ở; người con (đất gốc từ cha mẹ mình) được chia phần lớn hơn.'},
+{n:4,code:'04/2016/AL',field:'Dân sự',up:false,title:'Chuyển nhượng nhà đất là tài sản chung nhưng chỉ một vợ/chồng ký',
+summary:'Nhà đất là tài sản chung vợ chồng nhưng chỉ một người đứng tên ký hợp đồng chuyển nhượng; người kia không ký. Bên nhận đã trả đủ tiền, sử dụng công khai lâu dài; người không ký biết, cùng sử dụng tiền và không phản đối.',
+issue:'Bên nhận chuyển nhượng yêu cầu công nhận hợp đồng có hiệu lực dù thiếu chữ ký của người đồng sở hữu.',
+laws:'Khoản 2 Điều 176 Bộ luật Dân sự 1995; Điều 15 Luật Hôn nhân và gia đình 1986.',
+hold:'Đủ căn cứ xác định bên bán đã nhận đủ tiền, người không ký biết và cùng sử dụng tiền, bên mua sử dụng công khai mà không bị phản đối → xác định họ đồng ý chuyển nhượng; hợp đồng có hiệu lực, không vô hiệu vì thiếu chữ ký đồng sở hữu.'},
+{n:5,code:'05/2016/AL',field:'Dân sự',up:false,title:'Di sản thừa kế — xem xét công sức của đương sự không yêu cầu chia',
+summary:'Vụ tranh chấp di sản thừa kế có đương sự thuộc diện hưởng một phần di sản và có công sức quản lý, tôn tạo nhưng không đồng ý chia (lý do hết thời hiệu) và không có yêu cầu cụ thể về xem xét công sức.',
+issue:'Đương sự khởi kiện yêu cầu chia di sản thừa kế; khi chia, Tòa có phải xét công sức của người không đồng ý chia và không yêu cầu cụ thể không.',
+laws:'Khoản 1 Điều 5 và Điều 218 Bộ luật Tố tụng dân sự 2004. (Chỉ điều luật tố tụng — không kèm điều luật thừa kế nội dung.)',
+hold:'Đương sự thuộc diện hưởng di sản và có công sức nhưng không đồng ý chia, không yêu cầu cụ thể → nếu Tòa quyết định chia thừa kế thì vẫn phải xem xét công sức của họ (yêu cầu không chia đã bao hàm yêu cầu xem xét công sức).'},
+{n:6,code:'06/2016/AL',field:'Dân sự',up:false,title:'Tranh chấp thừa kế — không xác định được địa chỉ đồng thừa kế ở nước ngoài',
+summary:'Vụ chia di sản theo pháp luật (không di chúc) có người thừa kế ở nước ngoài mà Tòa đã ủy thác tư pháp đúng quy định nhưng vẫn không xác định được địa chỉ.',
+issue:'Người thừa kế khởi kiện yêu cầu chia di sản theo pháp luật; Tòa tiếp tục giải quyết hay đình chỉ khi không xác định được địa chỉ một đồng thừa kế.',
+laws:'Điều 93, điểm đ khoản 1 Điều 168 Bộ luật Tố tụng dân sự 2004; Điều 676 và Điều 685 Bộ luật Dân sự 2005.',
+hold:'Đã ủy thác tư pháp đúng quy định mà vẫn không xác định được địa chỉ người thừa kế ở nước ngoài → Tòa vẫn giải quyết, chia thừa kế theo pháp luật; phần của người vắng mặt tạm giao người thừa kế trong nước quản lý. Không lấy lý do đó để đình chỉ.'},
+{n:7,code:'07/2016/AL',field:'Dân sự',up:false,title:'Công nhận hợp đồng mua bán nhà xác lập trước 01/7/1991',
+summary:'Hợp đồng mua bán nhà xác lập trước 01/7/1991 có chữ ký bên bán xác nhận đã nhận đủ tiền nhưng bên mua không ký; bên mua đã nhận, sử dụng nhà ổn định lâu dài, bên bán không tranh chấp đòi tiền.',
+issue:'Bên mua yêu cầu công nhận hợp đồng mua bán nhà có hiệu lực dù bên mua không ký.',
+laws:'Điều 81, 82, 83 Bộ luật Tố tụng dân sự 2004; Nghị quyết 58/1998/NQ-UBTVQH10.',
+hold:'Hợp đồng lập trước 01/7/1991, bên bán ghi nhận đã nhận đủ tiền, bên mua tuy không ký nhưng sử dụng ổn định lâu dài và bên bán không đòi tiền → khi có căn cứ bên mua đã trả đủ tiền và đồng ý với hợp đồng thì công nhận hiệu lực.'},
+{n:8,code:'08/2016/AL',field:'Kinh doanh thương mại',up:false,title:'Lãi suất và điều chỉnh lãi suất trong hợp đồng tín dụng sau xét xử sơ thẩm',
+summary:'Tranh chấp hợp đồng tín dụng; đến ngày xét xử sơ thẩm bên vay còn nợ gốc, lãi trong hạn, lãi quá hạn và phí.',
+issue:'Ngân hàng khởi kiện đòi nợ; tranh chấp cách xác định và điều chỉnh lãi suất bên vay phải chịu kể từ sau ngày xét xử sơ thẩm đến khi trả xong nợ gốc.',
+laws:'Điều 471, 474, 476 Bộ luật Dân sự 2005; khoản 2 Điều 91 Luật Các tổ chức tín dụng 2010; Thông tư 12/2010/TT-NHNN; Quy chế cho vay kèm QĐ 1627/2001/QĐ-NHNN.',
+hold:'Kể từ sau ngày xét xử sơ thẩm, bên vay tiếp tục chịu lãi quá hạn trên nợ gốc chưa trả theo mức thỏa thuận đến khi trả xong; nếu hợp đồng có thỏa thuận điều chỉnh lãi theo thời kỳ thì lãi tiếp tục phải trả cũng được điều chỉnh tương ứng.'},
+{n:9,code:'09/2016/AL',field:'Kinh doanh thương mại',up:false,title:'Lãi suất nợ quá hạn trung bình; không tính lãi trên tiền phạt và bồi thường',
+summary:'Tranh chấp hợp đồng mua bán hàng hóa giữa thương nhân, bên vi phạm chậm thanh toán và phải chịu phạt vi phạm, bồi thường.',
+issue:'Bên bị vi phạm khởi kiện đòi thanh toán, phạt vi phạm và bồi thường; tranh chấp lãi suất nợ quá hạn do chậm thanh toán và có phải trả lãi trên tiền phạt/bồi thường không.',
+laws:'Điều 34, 37, khoản 3 Điều 297, các Điều 300, 301, 302, 306, 307 Luật Thương mại 2005; các Điều 307, 422, 474, 476 Bộ luật Dân sự 2005.',
+hold:'(i) Lãi chậm thanh toán tính theo lãi suất nợ quá hạn trung bình trên thị trường tại thời điểm xét xử sơ thẩm (trung bình của ít nhất ba ngân hàng tại địa phương). (ii) Không phải trả lãi trên số tiền phạt vi phạm và tiền bồi thường thiệt hại.'},
+{n:10,code:'10/2016/AL',field:'Hành chính',up:false,title:'Quyết định hành chính là đối tượng khởi kiện vụ án hành chính',
+summary:'Quyết định về bồi thường, hỗ trợ, tái định cư khi Nhà nước thu hồi đất có phần phê duyệt tác động trực tiếp, cụ thể đến quyền lợi của hộ dân.',
+issue:'Hộ dân khởi kiện yêu cầu xem xét lại quyết định; tranh chấp phần phê duyệt đó có phải là đối tượng khởi kiện vụ án hành chính không.',
+laws:'Khoản 1 Điều 3 và khoản 1 Điều 28 Luật Tố tụng hành chính 2010; Điều 41, 42 Luật Đất đai 2003; Nghị định 197/2004/NĐ-CP; Nghị định 69/2009/NĐ-CP.',
+hold:'Quyết định hành chính (hoặc phần phê duyệt trong đó) có nội dung tác động trực tiếp, cụ thể đến quyền và lợi ích hợp pháp của cá nhân/hộ gia đình → là đối tượng khởi kiện vụ án hành chính, kể cả khi mang hình thức phê duyệt chung.'},
+{n:11,code:'11/2017/AL',field:'Dân sự',up:false,title:'Thế chấp quyền sử dụng đất mà trên đất có tài sản của người khác',
+summary:'Bên thế chấp dùng quyền sử dụng đất và tài sản trên đất của mình để bảo đảm vay vốn ngân hàng, nhưng trên thửa đất còn có nhà thuộc sở hữu người khác. Hợp đồng thế chấp đúng hình thức, nội dung.',
+issue:'Ngân hàng (bên nhận thế chấp) yêu cầu xử lý tài sản thế chấp; tranh chấp hiệu lực hợp đồng và quyền lợi của chủ sở hữu tài sản trên đất khi phát mại.',
+laws:'Điều 342, 715, 721 Bộ luật Dân sự 2005; khoản 19 Điều 1 Nghị định 11/2012/NĐ-CP.',
+hold:'Hợp đồng thế chấp quyền sử dụng đất vẫn có hiệu lực. Khi giải quyết, Tòa phải dành cho chủ sở hữu tài sản trên đất quyền ưu tiên nhận chuyển nhượng quyền sử dụng đất đó nếu có nhu cầu.'},
+{n:12,code:'12/2017/AL',field:'Dân sự',up:false,title:'Triệu tập hợp lệ lần thứ nhất sau khi Tòa đã hoãn phiên tòa',
+summary:'Tòa hoãn phiên tòa vì lý do không thuộc lỗi đương sự. Khi mở lại, đương sự vắng mặt dù được triệu tập hợp lệ.',
+issue:'Đương sự khiếu nại/kháng cáo về việc xác định lần triệu tập; tranh chấp lần triệu tập này tính là lần thứ nhất hay thứ hai (ảnh hưởng việc đình chỉ/xử vắng mặt).',
+laws:'Khoản 1 Điều 199, Điều 202, khoản 2 Điều 266 Bộ luật Tố tụng dân sự 2004 (tương ứng Điều 227, 228, 296 BLTTDS 2015).',
+hold:'Khi Tòa đã hoãn phiên tòa và lý do hoãn không do lỗi đương sự thì lần mở lại mà đương sự vắng mặt được xác định là triệu tập hợp lệ lần thứ nhất mà vắng mặt — không phải lần thứ hai.'},
+{n:13,code:'13/2017/AL',field:'Kinh doanh thương mại',up:false,title:'Hiệu lực thanh toán của thư tín dụng (L/C) khi hợp đồng cơ sở bị hủy',
+summary:'Công ty Việt Nam mua hàng từ đối tác nước ngoài, thanh toán bằng L/C trả chậm, có ký quỹ. Hàng về bị kiểm định chất lượng thấp hơn cam kết.',
+issue:'Bên mua (mở L/C) khởi kiện yêu cầu hủy hợp đồng mua bán và hủy L/C, đòi lại tiền ký quỹ; tranh chấp L/C có mất hiệu lực thanh toán khi hợp đồng cơ sở bị hủy không.',
+laws:'Khoản 13 Điều 3, Điều 312 Luật Thương mại 2005; khoản 4 Điều 3 Luật Các tổ chức tín dụng 2010; Quyết định 226/2002/QĐ-NHNN; UCP 600.',
+hold:'L/C là giao dịch độc lập, riêng biệt với hợp đồng mua bán và chịu điều chỉnh của UCP 600. Việc hợp đồng mua bán quốc tế (cơ sở của L/C) bị hủy bỏ không đương nhiên làm L/C mất hiệu lực thanh toán; ngân hàng phát hành vẫn có nghĩa vụ thanh toán khi bộ chứng từ phù hợp.'},
+{n:14,code:'14/2017/AL',field:'Dân sự',up:false,title:'Điều kiện của hợp đồng tặng cho đất không ghi trong hợp đồng',
+summary:'Cha tặng cho con quyền sử dụng đất với điều kiện con xây nhà cho cha ở. Điều kiện không ghi trong hợp đồng nhưng thể hiện trong tài liệu, chứng cứ khác và các bên thống nhất. Sau khi sang tên, con không thực hiện điều kiện.',
+issue:'Bên tặng cho (cha) khởi kiện đòi lại đất; yêu cầu công nhận điều kiện tặng cho dù không ghi trong hợp đồng.',
+laws:'Điều 125, 126, 470 Bộ luật Dân sự 2005 (tương ứng Điều 120, 121, 462 BLDS 2015).',
+hold:'Điều kiện tặng cho tuy không ghi trong hợp đồng nhưng các bên đã thỏa thuận, thống nhất qua tài liệu/chứng cứ khác → Tòa phải công nhận điều kiện đó và xác định là hợp đồng tặng cho tài sản có điều kiện.'},
+{n:15,code:'15/2017/AL',field:'Dân sự',up:false,title:'Công nhận thỏa thuận miệng chuyển đổi quyền sử dụng đất nông nghiệp',
+summary:'Các đương sự thỏa thuận miệng đổi đất nông nghiệp cho nhau trước 15/10/1993, sau đó đăng ký, kê khai trong sổ địa chính và canh tác ổn định, liên tục, lâu dài.',
+issue:'Đương sự khởi kiện tranh chấp quyền sử dụng phần đất đã đổi; yêu cầu công nhận (hay không) thỏa thuận miệng chuyển đổi đất.',
+laws:'Khoản 2 Điều 16 Luật Đất đai 1987; khoản 2 Điều 170 Bộ luật Dân sự 2005.',
+hold:'Khi đã tự nguyện thỏa thuận miệng đổi đất nông nghiệp trước 15/10/1993, đã đăng ký/kê khai và canh tác ổn định lâu dài → Tòa phải công nhận thỏa thuận miệng để xác định quyền sử dụng đối với diện tích đã đổi.'},
+{n:16,code:'16/2017/AL',field:'Dân sự',up:false,title:'Chuyển nhượng đất là di sản do một đồng thừa kế thực hiện',
+summary:'Di sản là quyền sử dụng đất thuộc nhiều đồng thừa kế; một người đứng ra chuyển nhượng. Các đồng thừa kế còn lại biết nhưng không phản đối; tiền dùng cho nhu cầu chung; bên nhận đã được cấp giấy chứng nhận.',
+issue:'Các đồng thừa kế khởi kiện yêu cầu chia di sản; tranh chấp hợp đồng chuyển nhượng do một đồng thừa kế thực hiện có hợp pháp không.',
+laws:'Khoản 2 Điều 170, Điều 234, 634, 697 Bộ luật Dân sự 2005 (tương ứng Điều 221, 223, 612, 500 BLDS 2015).',
+hold:'Nếu các đồng thừa kế khác biết, không phản đối; tiền đã dùng cho họ; bên nhận đã được cấp giấy chứng nhận → công nhận hợp đồng chuyển nhượng hợp pháp; diện tích đã chuyển nhượng không còn là di sản để chia mà thuộc quyền sử dụng của bên nhận.'},
+{n:17,code:'17/2018/AL',field:'Hình sự',up:false,title:'Tình tiết "có tính chất côn đồ" trong tội Giết người có đồng phạm',
+summary:'Vụ giết người có đồng phạm gồm người xúi giục và người thực hành. Người thực hành trực tiếp thực hiện hành vi mang tính côn đồ. Vấn đề: tình tiết định khung "có tính chất côn đồ" áp dụng cho cả người xúi giục hay chỉ người thực hành.',
+laws:'Điểm n khoản 1 Điều 93 và khoản 2 Điều 93 Bộ luật Hình sự 1999 (tương ứng Điều 123 BLHS 2015).',
+hold:'Người thực hành chịu TNHS tội "Giết người" với tình tiết "có tính chất côn đồ". Người xúi giục chịu TNHS tội "Giết người" nhưng không áp dụng tình tiết "có tính chất côn đồ" (tình tiết gắn với hành vi/nhân thân người trực tiếp thực hiện).'},
+{n:18,code:'18/2018/AL',field:'Hình sự',up:false,title:'Giết người đang thi hành công vụ',
+summary:'Người điều khiển xe đầu kéo bị CSGT dừng xe vì vi phạm, không chấp hành mà đâm xe vào cảnh sát đang làm nhiệm vụ; khi cảnh sát bám gương xe thì tăng tốc, đánh lái mạnh để hất xuống, gây thương tích nặng. Vấn đề: định tội danh nào.',
+laws:'Điểm d khoản 1 Điều 93 Bộ luật Hình sự 1999 (tương ứng điểm d khoản 1 Điều 123 BLHS 2015).',
+hold:'Cố ý điều khiển phương tiện đâm/hất người thi hành công vụ, bỏ mặc hậu quả chết người → xử về tội "Giết người" với tình tiết "Giết người đang thi hành công vụ", không phải tội chống người thi hành công vụ hay cố ý gây thương tích.'},
+{n:19,code:'19/2018/AL',field:'Hình sự',up:false,title:'Giá trị tài sản bị chiếm đoạt trong tội Tham ô tài sản',
+summary:'Giao dịch viên ngân hàng lợi dụng vị trí làm thủ tục rút và chi tiền tiết kiệm khống từ quỹ chi nhánh để chiếm đoạt; trong điều tra đã nộp lại một phần. Vấn đề: xác định giá trị chiếm đoạt là tổng số rút khống hay trừ phần đã khắc phục.',
+laws:'Điều 46, 47, 60 và điểm c khoản 2 Điều 278 Bộ luật Hình sự 1999 (tương ứng Điều 51, 54, 65 và Điều 353 BLHS 2015).',
+hold:'Giá trị chiếm đoạt là toàn bộ số tiền đã làm thủ tục rút/chi khống từ quỹ, bao gồm cả phần đã khắc phục trong điều tra. Việc khắc phục một phần chỉ là tình tiết giảm nhẹ, không làm giảm giá trị chiếm đoạt khi định khung.'},
+{n:20,code:'20/2018/AL',field:'Lao động',up:false,title:'Xác lập quan hệ hợp đồng lao động sau khi hết thời gian thử việc',
+summary:'Người lao động ký thư mời làm việc có thời gian thử việc 2 tháng. Hết thử việc, người lao động tiếp tục làm việc mà công ty không thông báo kết quả, không ký hợp đồng mới. Sau đó công ty chấm dứt với lý do không hoàn thành công việc.',
+issue:'Người lao động khởi kiện về việc bị đơn phương chấm dứt hợp đồng lao động trái pháp luật; tranh chấp quan hệ lao động chính thức đã được xác lập sau thử việc chưa.',
+laws:'Điều 26, 27, 28, 29 Bộ luật Lao động 2012.',
+hold:'Hết thử việc mà người lao động tiếp tục làm việc, người sử dụng lao động không thông báo kết quả và không phản đối → quan hệ hợp đồng lao động chính thức đã xác lập; việc chấm dứt phải tuân thủ quy định và phải có căn cứ hợp pháp, nếu không là trái pháp luật.'},
+{n:21,code:'21/2018/AL',field:'Dân sự',up:false,title:'Lỗi và thiệt hại khi đơn phương chấm dứt hợp đồng cho thuê tài sản',
+summary:'Một công ty cho công ty khác thuê đầu máy để lai dắt tàu, hợp đồng có thời hạn. Bên thuê đơn phương chấm dứt trước thời hạn với thời gian thông báo quá ngắn, gây thiệt hại cho bên cho thuê.',
+issue:'Bên cho thuê khởi kiện yêu cầu bồi thường thiệt hại do bên thuê đơn phương chấm dứt hợp đồng trước thời hạn.',
+laws:'Điều 426 Bộ luật Dân sự 2005 (tương ứng Điều 428 BLDS 2015); các Điều 269, 302, 303 Luật Thương mại 2005.',
+hold:'Bên đơn phương chấm dứt hợp đồng trước thời hạn với thời gian thông báo quá ngắn, gây thiệt hại → bị xác định có lỗi và phải bồi thường; thiệt hại cần xem xét là tiền cho thuê trong thời gian còn lại của hợp đồng.'},
+{n:22,code:'22/2018/AL',field:'Kinh doanh thương mại',up:false,title:'Không vi phạm nghĩa vụ cung cấp thông tin trong hợp đồng bảo hiểm nhân thọ',
+summary:'Doanh nghiệp bảo hiểm từ chối chi trả với lý do bên mua vi phạm nghĩa vụ kê khai tình trạng bệnh lý. Tuy nhiên yêu cầu kê khai trong hợp đồng/quy tắc/giấy yêu cầu bảo hiểm không rõ ràng, và thông tin đó không phải căn cứ quyết định giao kết.',
+issue:'Bên mua bảo hiểm (người thụ hưởng) khởi kiện yêu cầu doanh nghiệp bảo hiểm chi trả; tranh chấp bên mua có vi phạm nghĩa vụ kê khai bệnh lý không.',
+laws:'Khoản 2 Điều 407, khoản 4 Điều 409 Bộ luật Dân sự 2005; Điều 21 Luật Kinh doanh bảo hiểm 2000 (sửa đổi 2010).',
+hold:'Khi điều khoản kê khai bệnh lý không rõ ràng và thông tin đó không phải căn cứ quyết định giao kết → không coi bên mua vi phạm nghĩa vụ cung cấp thông tin; điều khoản không rõ ràng được giải thích theo hướng có lợi cho bên mua bảo hiểm.'},
+{n:23,code:'23/2018/AL',field:'Kinh doanh thương mại',up:false,title:'Hiệu lực hợp đồng bảo hiểm nhân thọ khi không đóng phí do lỗi doanh nghiệp bảo hiểm',
+summary:'Đến hạn đóng phí và trong thời gian gia hạn, nhân viên doanh nghiệp bảo hiểm không đến thu phí của người mua.',
+issue:'Bên mua bảo hiểm khởi kiện yêu cầu chi trả; tranh chấp hợp đồng còn hiệu lực không khi không đóng phí do lỗi doanh nghiệp bảo hiểm.',
+laws:'Điều 23 Luật Kinh doanh bảo hiểm 2000 (sửa đổi 2010).',
+hold:'Hợp đồng bảo hiểm nhân thọ không mất hiệu lực vì bên mua không đóng phí trong thời hạn, khi việc chưa đóng phí là do lỗi của doanh nghiệp bảo hiểm (nhân viên không đến thu phí trong thời hạn và gia hạn) → xác định bên mua không có lỗi.'},
+{n:24,code:'24/2018/AL',field:'Dân sự',up:false,title:'Di sản thừa kế chuyển thành tài sản thuộc quyền sở hữu của cá nhân',
+summary:'Nhà, đất là di sản thừa kế đã được vợ/chồng còn sống cùng các đồng thừa kế thỏa thuận phân chia toàn bộ; việc phân chia không vi phạm quyền lợi thừa kế nào, không tranh chấp, đã thực hiện thực tế và điều chỉnh sổ sách.',
+issue:'Một bên khởi kiện yêu cầu chia lại di sản đã được phân chia; có còn quyền yêu cầu chia di sản thừa kế nữa không.',
+laws:'Các Điều 219, 223, 226 Bộ luật Dân sự 2005 (tương ứng Điều 213, 218, 220 BLDS 2015).',
+hold:'Di sản đã được các đồng thừa kế thỏa thuận phân chia hợp pháp → không còn là di sản mà chuyển thành tài sản thuộc quyền sở hữu hợp pháp của cá nhân; người nhận chỉ có quyền kiện đòi lại tài sản bị chiếm hữu bất hợp pháp, không có quyền yêu cầu chia di sản.'},
+{n:25,code:'25/2018/AL',field:'Dân sự',up:false,title:'Không phải chịu phạt cọc vì lý do khách quan',
+summary:'Hợp đồng đặt cọc thỏa thuận trong 30 ngày bên nhận cọc phải hoàn tất thủ tục để được cấp giấy chứng nhận rồi ký hợp đồng mua bán, nếu vi phạm thì chịu phạt cọc. Bên nhận cọc không hoàn tất đúng hạn do Cơ quan thi hành án chậm chuyển quyền sở hữu.',
+issue:'Bên đặt cọc khởi kiện đòi phạt cọc; bên nhận cọc cho rằng không phải chịu phạt vì việc chậm là do lý do khách quan.',
+laws:'Điều 358 Bộ luật Dân sự 2005 (tương ứng Điều 328 BLDS 2015).',
+hold:'Bên nhận đặt cọc không thực hiện đúng cam kết do nguyên nhân khách quan (cơ quan nhà nước chậm làm thủ tục) → lỗi thuộc khách quan, bên nhận đặt cọc không phải chịu phạt cọc.'},
+{n:26,code:'26/2018/AL',field:'Dân sự',up:false,title:'Thời điểm bắt đầu và thời hiệu yêu cầu chia di sản là bất động sản',
+summary:'Người để lại di sản chết trước ngày công bố Pháp lệnh Thừa kế (30/8/1990); di sản là bất động sản.',
+issue:'Người thừa kế khởi kiện yêu cầu chia di sản là bất động sản; tranh chấp thời điểm bắt đầu tính thời hiệu và thời hiệu yêu cầu chia.',
+laws:'Khoản 1 Điều 623 Bộ luật Dân sự 2015; khoản 4 Điều 36 Pháp lệnh Thừa kế 30/8/1990.',
+hold:'Theo BLDS 2015, thời hiệu yêu cầu chia di sản là 30 năm với bất động sản kể từ thời điểm mở thừa kế. Trường hợp người để lại di sản chết trước 30/8/1990 thì thời điểm bắt đầu tính thời hiệu là ngày công bố Pháp lệnh Thừa kế (30/8/1990).'},
+{n:27,code:'27/2019/AL',field:'Hành chính',up:false,title:'Thụ lý vụ án hành chính về nhà đất Nhà nước quản lý trước 01/7/1991',
+summary:'Quyết định hành chính không chấp nhận đòi lại nhà đất mà Nhà nước đã quản lý, bố trí sử dụng trong chính sách cải tạo trước 01/7/1991; quyết định ban hành đúng thẩm quyền, nội dung, trình tự.',
+issue:'Người dân khởi kiện yêu cầu hủy quyết định không cho đòi lại nhà đất; Tòa có thụ lý và xử lý theo hướng nào.',
+laws:'Điều 94 Luật Tổ chức HĐND và UBND 2003; khoản 1 Điều 28, điểm a khoản 2 Điều 163 Luật Tố tụng hành chính 2010; Điều 1 Nghị quyết 23/2003/QH11; Nghị định 127/2005/NĐ-CP.',
+hold:'Với khởi kiện quyết định hành chính không chấp nhận đòi lại nhà đất thuộc diện Nhà nước quản lý trước 01/7/1991, nếu quyết định ban hành đúng thẩm quyền/nội dung/trình tự/thủ tục → Tòa phải thụ lý để giải quyết nhưng theo hướng "bác yêu cầu khởi kiện".'},
+{n:28,code:'28/2019/AL',field:'Hình sự',up:false,title:'Giết người trong trạng thái tinh thần bị kích động mạnh',
+summary:'Bị cáo thực hiện hành vi giết người trong bối cảnh nạn nhân có hành vi trái pháp luật nghiêm trọng khiến tinh thần bị kích động mạnh. Vấn đề: phân biệt tội "Giết người trong trạng thái tinh thần bị kích động mạnh" với tội "Giết người" thông thường.',
+laws:'Khoản 1 Điều 95 Bộ luật Hình sự 1999 (tương ứng khoản 1 Điều 125 BLHS 2015).',
+hold:'Khi bị cáo bị kích động mạnh về tinh thần do hành vi trái pháp luật nghiêm trọng của nạn nhân với bị cáo (hoặc người thân) → định tội theo Điều 95 BLHS 1999 (Điều 125 BLHS 2015), không phải tội giết người thông thường.'},
+{n:29,code:'29/2019/AL',field:'Hình sự',up:false,title:'Tài sản bị chiếm đoạt trong tội Cướp tài sản',
+summary:'Bị cáo dùng vũ lực tấn công, đẩy bị hại vào tình trạng không thể chống cự nhằm không phải trả khoản tiền mà bị cáo có nghĩa vụ trả cho bị hại. Vấn đề: xác định tài sản bị chiếm đoạt trong tội cướp.',
+laws:'Điều 133 Bộ luật Hình sự 1999 (tương ứng Điều 168 BLHS 2015).',
+hold:'Dùng vũ lực làm bị hại không thể chống cự nhằm chiếm đoạt (không trả) khoản tiền mà bị cáo có nghĩa vụ trả → khoản tiền đó là tài sản bị chiếm đoạt; bị cáo chịu TNHS về tội "Cướp tài sản".'},
+{n:30,code:'30/2020/AL',field:'Hình sự',up:false,title:'Cố ý chèn lên bị hại sau tai nạn giao thông',
+summary:'Sau khi gây tai nạn giao thông, bị cáo dừng xe kiểm tra, thấy bị hại nằm dưới gầm xe, không xác định được còn sống hay đã chết, vẫn tiếp tục điều khiển xe chèn lên người bị hại. Hậu quả bị hại chết. Vấn đề: định tội danh nào.',
+laws:'Các Điều 93, 202 Bộ luật Hình sự 1999 (tương ứng Điều 123, 260 BLHS 2015).',
+hold:'Bị cáo nhận thức việc tiếp tục chèn lên bị hại là nguy hiểm cho tính mạng nhưng vẫn cố ý thực hiện → cấu thành tội "Giết người" (Điều 93 BLHS 1999 / Điều 123 BLHS 2015), không chỉ là vi phạm quy định về điều khiển phương tiện giao thông.'},
+{n:31,code:'31/2020/AL',field:'Dân sự',up:false,title:'Quyền thuê, mua nhà thuộc sở hữu Nhà nước là quyền tài sản',
+summary:'Cá nhân thuộc diện được thuê/mua hóa giá nhà ở thuộc sở hữu Nhà nước theo Nghị định 61/CP nhưng khi còn sống chưa hoàn tất thủ tục mua hóa giá rồi chết.',
+issue:'Các đồng thừa kế tranh chấp di sản; yêu cầu xác định quyền thuê/mua nhà thuộc sở hữu Nhà nước có phải là di sản thừa kế không.',
+laws:'Các Điều 172, 188, 634 Bộ luật Dân sự 1995 (tương ứng Điều 105, 115, 609 BLDS 2015); Nghị định 61/CP ngày 05/7/1994.',
+hold:'Quyền thuê nhà, mua nhà thuộc sở hữu Nhà nước là quyền tài sản và được chuyển giao cho các thừa kế (chỉ áp dụng cho quan hệ thừa kế, không áp dụng cho giao dịch mua bán/trao đổi khác).'},
+{n:32,code:'32/2020/AL',field:'Dân sự',up:false,title:'Đất do cá nhân khai phá rồi xuất cảnh, người khác sử dụng ổn định lâu dài',
+summary:'Cá nhân khai phá đất rồi xuất cảnh định cư nước ngoài, không còn quản lý. Người khác trong nước đã quản lý, sử dụng ổn định lâu dài, tôn tạo, kê khai và được cấp giấy chứng nhận.',
+issue:'Người khai phá đất (hoặc thừa kế) khởi kiện đòi lại quyền sử dụng đất từ người đang sử dụng.',
+laws:'Khoản 2 Điều 10, khoản 1 và 4 Điều 50 Luật Đất đai 2003; Khoản 1 Điều 164, Điều 176, khoản 2 Điều 177, các Điều 192, 196, 201 Bộ luật Dân sự 1995.',
+hold:'Cá nhân khai phá đất không còn quyền sử dụng đất hợp pháp → yêu cầu đòi lại quyền sử dụng đất không có cơ sở chấp nhận.'},
+{n:33,code:'33/2020/AL',field:'Dân sự',up:false,title:'Cá nhân được giao đất nhưng để người khác sử dụng ổn định lâu dài',
+summary:'Đất do cá nhân được Nhà nước giao nhưng không trực tiếp quản lý mà để người khác sử dụng công khai, ổn định, liên tục, lâu dài, không tranh chấp, đã tôn tạo, xây nhà, kê khai mà người được giao không phản đối.',
+issue:'Người được giao đất (hoặc thừa kế) khởi kiện đòi lại quyền sử dụng đất từ người đang sử dụng.',
+laws:'Các Điều 176, 192, 196 Bộ luật Dân sự 1995 (tương ứng Điều 170, 185, 190 BLDS 2005; Điều 221, 187, 182 BLDS 2015).',
+hold:'Không chấp nhận yêu cầu đòi lại quyền sử dụng đất của cá nhân được Nhà nước giao đất nhưng không sử dụng mà để người khác quản lý, sử dụng ổn định lâu dài từ khi được giao.'},
+{n:34,code:'34/2020/AL',field:'Dân sự',up:false,title:'Quyền lập di chúc định đoạt giá trị bồi thường về đất bị thu hồi',
+summary:'Cá nhân có quyền sử dụng đất hợp pháp; khi còn sống, Nhà nước đã có quyết định thu hồi đất thuộc trường hợp được bồi thường. Người này lập di chúc định đoạt giá trị bồi thường.',
+issue:'Người thừa kế tranh chấp về quyền lập di chúc đối với khoản bồi thường; yêu cầu xác định giá trị bồi thường có phải là di sản thừa kế không.',
+laws:'Các Điều 163, 181, 634, 646, 648 Bộ luật Dân sự 2005 (tương ứng Điều 105, 115, 612, 624, 626 BLDS 2015); Điều 42 Luật Đất đai 2003.',
+hold:'Giá trị quyền sử dụng đất bị thu hồi được bảo đảm bằng giá trị bồi thường → người có đất bị thu hồi có quyền lập di chúc định đoạt giá trị bồi thường đó (là di sản thừa kế).'},
+{n:35,code:'35/2020/AL',field:'Dân sự',up:false,title:'Người định cư nước ngoài giao lại đất nông nghiệp cho người trong nước',
+summary:'Người Việt Nam trước khi đi định cư nước ngoài đã giao lại đất nông nghiệp cho người trong nước sử dụng. Người trong nước sử dụng ổn định, lâu dài và được cấp giấy chứng nhận.',
+issue:'Người định cư nước ngoài (hoặc thừa kế) khởi kiện đòi lại đất nông nghiệp đã giao cho người trong nước.',
+laws:'Quyết định 201-CP ngày 01/7/1980 của Hội đồng Chính phủ; Điều 14 Luật Đất đai 1987; Điều 26 Luật Đất đai 1993; khoản 11 Điều 38, Điều 50 Luật Đất đai 2003.',
+hold:'Người trong nước có quyền sử dụng đất hợp pháp → không chấp nhận yêu cầu đòi lại quyền sử dụng đất.'},
+{n:36,code:'36/2020/AL',field:'Dân sự',up:false,title:'Hiệu lực hợp đồng thế chấp khi giấy chứng nhận quyền sử dụng đất bị thu hồi, hủy bỏ',
+summary:'Hợp đồng thế chấp quyền sử dụng đất giao kết đúng quy định tại thời điểm ký. Sau đó giấy chứng nhận quyền sử dụng đất bị cơ quan nhà nước thu hồi, hủy bỏ do sai sót về diện tích và trình tự, thủ tục cấp.',
+issue:'Ngân hàng yêu cầu xử lý tài sản thế chấp; tranh chấp hợp đồng thế chấp còn hiệu lực không khi giấy chứng nhận bị thu hồi, hủy bỏ.',
+laws:'Các Điều 322, 343, 342, 411 Bộ luật Dân sự 2005 (tương ứng Điều 317, 408 BLDS 2015); các Điều 61, 62, 46, 106 Luật Đất đai 2003.',
+hold:'Việc thu hồi, hủy bỏ giấy chứng nhận quyền sử dụng đất không làm mất quyền sử dụng đất hợp pháp của người sử dụng đất → hợp đồng thế chấp quyền sử dụng đất vẫn có hiệu lực pháp luật.'},
+{n:37,code:'37/2020/AL',field:'Kinh doanh thương mại',up:false,title:'Hiệu lực hợp đồng bảo hiểm tài sản khi đóng phí sau thời hạn',
+summary:'Sau khi hết thời hạn đóng phí theo thỏa thuận, bên mua mới đóng phí bảo hiểm tài sản. Doanh nghiệp bảo hiểm không có ý kiến, không thông báo chấm dứt hợp đồng, vẫn nhận phí, xuất hóa đơn và báo cáo thuế. Sau đó xảy ra sự kiện bảo hiểm.',
+issue:'Bên mua bảo hiểm (người được bảo hiểm) khởi kiện yêu cầu bồi thường; tranh chấp hợp đồng còn hiệu lực không khi đóng phí sau thời hạn.',
+laws:'Các Điều 285, 287 Bộ luật Dân sự 2005 (tương ứng Điều 278, 354 BLDS 2015); các Điều 15, 23 Luật Kinh doanh bảo hiểm 2000 (sửa đổi 2010).',
+hold:'Hợp đồng bảo hiểm có hiệu lực thi hành; doanh nghiệp bảo hiểm phải chịu trách nhiệm bồi thường thiệt hại cho người được bảo hiểm.'},
+{n:38,code:'38/2020/AL',field:'Dân sự',up:false,title:'Không thụ lý đòi tài sản đã được phân chia bằng bản án có hiệu lực',
+summary:'Tài sản (nhà, đất) đã được phân chia bằng bản án, quyết định đã có hiệu lực pháp luật. Sau đó có người khác đòi quyền sở hữu nhà và quyền sử dụng đất đã được phân chia.',
+issue:'Người khác khởi kiện đòi tài sản đã được phân chia bằng bản án có hiệu lực; Tòa có thụ lý vụ án mới không.',
+laws:'Điểm c khoản 1 Điều 192, điểm g khoản 1 Điều 217, khoản 2 Điều 327, khoản 1 Điều 353 Bộ luật Tố tụng dân sự 2015.',
+hold:'Tòa không thụ lý vụ án mới. Người có yêu cầu thông báo bằng văn bản cho người có thẩm quyền để xem xét lại bản án, quyết định theo thủ tục giám đốc thẩm hoặc tái thẩm.'},
+{n:39,code:'39/2020/AL',field:'Dân sự',up:false,title:'Giao dịch dân sự có điều kiện vô hiệu do điều kiện không thể xảy ra',
+summary:'Người thuê nhà thuộc sở hữu Nhà nước cam kết sau khi mua hóa giá nhà sẽ chuyển nhượng cho bên kia; bên mua đã giao tiền, bên bán đã giao nhà. Nhưng Nhà nước không hóa giá, không công nhận quyền sở hữu nhà cho bên bán → điều kiện chuyển nhượng không thể xảy ra.',
+issue:'Bên mua nhà khởi kiện về hợp đồng chuyển nhượng; hợp đồng có điều kiện này có hiệu lực hay vô hiệu do điều kiện không thể xảy ra.',
+laws:'Điều 23 Pháp lệnh Hợp đồng dân sự 1991 (tương ứng khoản 6 Điều 402 BLDS 2015); Điều 21 Luật Nhà ở 2005; Điều 256 Bộ luật Dân sự 2005 (tương ứng Điều 166 BLDS 2015).',
+hold:'Hợp đồng chuyển nhượng quyền sở hữu nhà là giao dịch dân sự có điều kiện, nhưng vô hiệu do điều kiện của hợp đồng không thể xảy ra.'},
+{n:40,code:'40/2021/AL',field:'Dân sự',up:false,title:'Công nhận việc chuyển đổi quyền sử dụng đất trên thực tế',
+summary:'Các bên đổi quyền sử dụng đất trên thực tế mà không có thỏa thuận bằng văn bản. Sau khi đổi, mỗi bên đã sử dụng phần đất nhận chuyển đổi ổn định, lâu dài, không tranh chấp, đã kê khai và được cấp giấy chứng nhận.',
+issue:'Đương sự khởi kiện đòi lại đất theo ranh giới ban đầu; yêu cầu xác định việc chuyển đổi đất trên thực tế có được công nhận không.',
+laws:'Khoản 2 Điều 3 Luật Đất đai 1993 (tương ứng Điều 167 Luật Đất đai 2013); khoản 2 Điều 170 Bộ luật Dân sự 2005 (tương ứng Điều 221 BLDS 2015).',
+hold:'Phải công nhận việc chuyển đổi quyền sử dụng đất trên thực tế; các bên có quyền sử dụng đất đối với diện tích đã chuyển đổi.'},
+{n:41,code:'41/2021/AL',field:'Hôn nhân & gia đình',up:false,title:'Chấm dứt hôn nhân thực tế',
+summary:'Nam nữ chung sống như vợ chồng không đăng ký kết hôn; sau đó không còn chung sống và một người đã chung sống như vợ chồng với người khác (trước khi Luật HN&GĐ 1986 có hiệu lực). Cả hai quan hệ đều là hôn nhân thực tế.',
+issue:'Trong vụ tranh chấp chia di sản và tài sản chung, cần xác định quan hệ hôn nhân thực tế nào được công nhận để xác định người thừa kế.',
+laws:'Điều 676 Bộ luật Dân sự 2005 (tương ứng Điều 651 BLDS 2015); Nghị quyết 35/2000/QH10; Nghị quyết 02/2000/NQ-HĐTP.',
+hold:'Chỉ thừa nhận quan hệ hôn nhân thực tế thứ hai là hợp pháp; quan hệ hôn nhân thực tế thứ nhất được xác định đã chấm dứt → chia tài sản chung và hưởng di sản trên cơ sở đó.'},
+{n:42,code:'42/2021/AL',field:'Dân sự',up:false,title:'Quyền lựa chọn Tòa án của người tiêu dùng khi hợp đồng mẫu có thỏa thuận trọng tài',
+summary:'Hợp đồng theo mẫu giao kết với người tiêu dùng có điều khoản chọn Trọng tài để giải quyết tranh chấp. Khi tranh chấp, người tiêu dùng khởi kiện ra Tòa án Việt Nam thay vì trọng tài.',
+issue:'Người tiêu dùng khởi kiện ra Tòa án; tranh chấp điều khoản trọng tài trong hợp đồng mẫu có loại trừ quyền khởi kiện ra Tòa của người tiêu dùng không.',
+laws:'Điều 38 Luật Bảo vệ quyền lợi người tiêu dùng 2010; Điều 17 Luật Trọng tài thương mại 2010; khoản 3 Điều 26, khoản 1 Điều 35 Bộ luật Tố tụng dân sự 2015; khoản 5 Điều 4 Nghị quyết 01/2014/NQ-HĐTP.',
+hold:'Người tiêu dùng không lựa chọn trọng tài và có quyền lựa chọn Tòa án Việt Nam giải quyết; điều khoản trọng tài trong hợp đồng mẫu không loại trừ quyền khởi kiện ra Tòa án của người tiêu dùng.'},
+{n:43,code:'43/2021/AL',field:'Dân sự',up:false,title:'Hiệu lực hợp đồng thế chấp nhà đất nhận chuyển nhượng nhưng chưa thanh toán đủ',
+summary:'Bên mua nhà đất đã được cấp giấy chứng nhận nhưng mới thanh toán một phần, rồi thế chấp nhà đất cho ngân hàng (có đăng ký thế chấp). Bên bán biết và đồng ý cho thế chấp nhưng sau đó yêu cầu hủy hợp đồng chuyển nhượng.',
+issue:'Ngân hàng yêu cầu xử lý tài sản thế chấp, còn bên bán yêu cầu hủy hợp đồng chuyển nhượng; tranh chấp hiệu lực hợp đồng thế chấp khi tài sản chưa thanh toán đủ.',
+laws:'Các Điều 168, 323, 342, 425, 438, 689, 439, 692 Bộ luật Dân sự 2005 (tương ứng Điều 161, 298, 318, 423, 440, 502 BLDS 2015); Điều 10 Nghị định 163/2006/NĐ-CP.',
+hold:'Hợp đồng thế chấp đã công chứng, đăng ký hợp pháp nên có hiệu lực pháp luật. Nếu bên mua không trả đủ tiền, bên bán có quyền khởi kiện bằng vụ án khác để yêu cầu thanh toán (không hủy được hợp đồng thế chấp).'},
+{n:44,code:'44/2021/AL',field:'Dân sự',up:false,title:'Thời hiệu khởi kiện đối với yêu cầu phản tố',
+summary:'Trong vụ án dân sự, bị đơn có yêu cầu phản tố đối với nguyên đơn; có đương sự đề nghị áp dụng thời hiệu khởi kiện.',
+issue:'Bị đơn đưa ra yêu cầu phản tố; đương sự đề nghị áp dụng thời hiệu — yêu cầu phản tố có chịu ràng buộc thời hiệu khởi kiện như yêu cầu khởi kiện không.',
+laws:'Khoản 4 Điều 60, Điều 159, 176, 178 Bộ luật Tố tụng dân sự 2004 (tương ứng Điều 72, 184, 200, 202 BLTTDS 2015); điểm e khoản 1 Điều 217 BLTTDS 2015.',
+hold:'Yêu cầu phản tố của bị đơn chính là yêu cầu khởi kiện và phải tuân thủ quy định về thời hiệu khởi kiện. Khi có đương sự đề nghị áp dụng thời hiệu, Tòa phải xác định yêu cầu phản tố còn thời hiệu hay không.'},
+{n:45,code:'45/2021/AL',field:'Hình sự',up:false,title:'Giết người thuộc trường hợp phạm tội chưa đạt',
+summary:'Bị cáo cố ý thực hiện hành vi nhằm tước đoạt tính mạng người khác nhưng hậu quả chết người chưa xảy ra; bị hại bị tổn hại sức khỏe. Vấn đề: định tội danh và giai đoạn phạm tội khi nạn nhân không chết ngoài ý muốn của bị cáo.',
+laws:'Điều 15, Điều 123 Bộ luật Hình sự 2015 (sửa đổi 2017).',
+hold:'Hậu quả chết người chưa xảy ra → bị cáo chịu TNHS về tội "Giết người" thuộc trường hợp "Phạm tội chưa đạt" (Điều 15 BLHS 2015).'},
+{n:46,code:'46/2021/AL',field:'Hình sự',up:false,title:'Tình tiết "có trách nhiệm giáo dục" trong tội Dâm ô đối với trẻ em',
+summary:'Bị cáo là giáo viên tại trường mà bị hại là trẻ em theo học, nhưng không trực tiếp giảng dạy bị hại; bị cáo có hành vi dâm ô đối với bị hại. Vấn đề: có áp dụng tình tiết định khung tăng nặng "có trách nhiệm giáo dục" khi không trực tiếp dạy bị hại không.',
+laws:'Điểm c khoản 2 Điều 116 Bộ luật Hình sự 1999 (tương ứng điểm d khoản 2 Điều 146 BLHS 2015); điểm đ, e khoản 1 Điều 31 Thông tư 12/2011/TT-BGDĐT.',
+hold:'Bị cáo phạm tội với tình tiết "Đối với trẻ em mà người phạm tội có trách nhiệm giáo dục" — vì là giáo viên của trường, bị cáo có trách nhiệm giáo dục với tất cả học sinh, không chỉ học sinh mình trực tiếp dạy.'},
+{n:47,code:'47/2021/AL',field:'Hình sự',up:false,title:'Tội danh khi dùng hung khí nguy hiểm đâm vào vùng trọng yếu của cơ thể',
+summary:'Bị cáo dùng dao (hung khí nguy hiểm) đâm vào vùng bụng — vùng trọng yếu của cơ thể. Bị hại không chết ngoài ý muốn chủ quan của bị cáo. Vấn đề: định tội "Giết người" hay "Cố ý gây thương tích" khi nạn nhân sống sót.',
+laws:'Điều 18; điểm a, n khoản 1 Điều 93 Bộ luật Hình sự 1999 (tương ứng Điều 15; điểm a, n khoản 1 Điều 123 BLHS 2015).',
+hold:'Bị cáo chịu TNHS về tội "Giết người". Lưu ý: phải đánh giá toàn diện chứng cứ, cơ chế hình thành vết thương, sự quyết liệt, ý thức cố ý tước đoạt tính mạng và việc bị hại không chết ngoài ý muốn — không phải mọi trường hợp đâm vùng trọng yếu đều áp dụng án lệ này.'},
+{n:48,code:'48/2021/AL',field:'Hình sự',up:false,title:'Tình tiết giảm nhẹ "nộp lại tiền thu lợi bất chính"',
+summary:'Bị cáo nộp lại tiền thu lợi bất chính từ hành vi phạm tội. Vấn đề: việc nộp lại được xếp vào tình tiết giảm nhẹ nào — khoản 1 (tự nguyện khắc phục hậu quả) hay khoản 2 (Tòa tự xem xét) Điều 46 BLHS 1999.',
+laws:'Khoản 2 Điều 46 Bộ luật Hình sự 1999 (tương ứng khoản 2 Điều 51 BLHS 2015); điểm c mục 5 Nghị quyết 01/2000/NQ-HĐTP.',
+hold:'Bị cáo được hưởng tình tiết giảm nhẹ TNHS theo khoản 2 Điều 46 BLHS 1999 (tình tiết do Tòa tự xem xét) — không phải tình tiết "tự nguyện sửa chữa, bồi thường, khắc phục hậu quả" tại khoản 1.'},
+{n:49,code:'49/2021/AL',field:'Hành chính',up:false,title:'Quyết định hành chính ban hành không đúng thẩm quyền',
+summary:'Tranh chấp hợp đồng về quyền sử dụng đất; Chủ tịch UBND ban hành quyết định hành chính để giải quyết tranh chấp này.',
+issue:'Đương sự khởi kiện yêu cầu hủy quyết định hành chính của Chủ tịch UBND; cơ quan hành chính hay Tòa án có thẩm quyền giải quyết loại tranh chấp này.',
+laws:'Khoản 3 Điều 25 Bộ luật Tố tụng dân sự 2004 (tương ứng khoản 3 Điều 26 BLTTDS 2015); Điều 136 Luật Đất đai 2003 (tương ứng Điều 203 Luật Đất đai 2013).',
+hold:'Tranh chấp hợp đồng về quyền sử dụng đất thuộc thẩm quyền giải quyết của Tòa án → Chủ tịch UBND ban hành quyết định hành chính để giải quyết tranh chấp đất đai đó là không đúng thẩm quyền.'},
+{n:50,code:'50/2021/AL',field:'Dân sự',up:false,title:'Quyền khởi kiện đòi lại tài sản của người được giao theo bản án có hiệu lực',
+summary:'Bản án/quyết định có hiệu lực đã phân chia tài sản nhưng chưa được thi hành vì người được thi hành án không yêu cầu thi hành và chưa nhận tài sản. Khi đã hết thời hiệu yêu cầu thi hành án mới phát sinh tranh chấp.',
+issue:'Người được giao tài sản theo bản án khởi kiện đòi lại tài sản; còn quyền khởi kiện bằng vụ án mới khi đã hết thời hiệu yêu cầu thi hành án không.',
+laws:'Khoản 2, 7 Điều 25 Bộ luật Tố tụng dân sự 2004 (tương ứng khoản 2, 9 Điều 26 BLTTDS 2015); Điều 256 Bộ luật Dân sự 2005 (tương ứng Điều 166 BLDS 2015); khoản 6 Điều 105 Luật Đất đai 2003.',
+hold:'Người được giao tài sản theo bản án/quyết định đã có hiệu lực có quyền khởi kiện đòi lại tài sản bằng vụ án dân sự mới (kể cả khi đã hết thời hiệu yêu cầu thi hành án); nếu không có căn cứ xác định đã từ bỏ quyền tài sản thì chấp nhận yêu cầu khởi kiện.'},
+{n:51,code:'51/2021/AL',field:'Dân sự',up:false,title:'Quyền sở hữu khu vực để xe ô tô của nhà chung cư',
+summary:'Khu để xe ô tô tại tầng hầm chung cư được xây theo quy chuẩn và không được phân bổ vào giá bán căn hộ. Pháp luật phân biệt chỗ để xe ô tô với chỗ để xe đạp/xe hai bánh (thuộc sở hữu chung).',
+issue:'Cư dân/ban quản trị chung cư tranh chấp với chủ đầu tư; yêu cầu xác định quyền sở hữu khu vực để xe ô tô thuộc sở hữu chung hay riêng của chủ đầu tư.',
+laws:'Điều 70 Luật Nhà ở 2005 (tương ứng Điều 100 Luật Nhà ở 2014); điểm b khoản 1, điểm c khoản 2, khoản 3 Điều 49 Nghị định 71/2010/NĐ-CP; Thông tư 02/2016/TT-BXD.',
+hold:'Khu vực để xe ô tô của chung cư (xây theo quy chuẩn, không phân bổ vào giá bán căn hộ) thuộc quyền sở hữu riêng của chủ đầu tư.'},
+{n:52,code:'52/2021/AL',field:'Dân sự',up:false,title:'Hiệu lực hợp đồng tặng cho quyền sử dụng đất khi chưa đăng ký',
+summary:'Hợp đồng tặng cho quyền sử dụng đất lập thành văn bản, đã công chứng/chứng thực; bên được tặng cho chưa đăng ký thì bên tặng cho chết. Việc chưa đăng ký do trở ngại khách quan về thủ tục hành chính. Đến khi chết, bên tặng cho không có văn bản thay thế/hủy hợp đồng.',
+issue:'Bên được tặng cho yêu cầu công nhận hợp đồng tặng cho đất; tranh chấp hiệu lực hợp đồng khi chưa đăng ký và bên tặng cho đã chết.',
+laws:'Điều 467, 692, 722 đến 726 Bộ luật Dân sự 2005 (tương ứng Điều 459, 502, 503 BLDS 2015); khoản 1 Điều 106, điểm b khoản 1 Điều 129 Luật Đất đai 2003.',
+hold:'Công nhận hiệu lực hợp đồng tặng cho khi đủ điều kiện: hợp đồng thỏa mãn điều kiện luật về tặng cho; đến khi chết người tặng cho không thay thế/hủy hợp đồng; việc không đăng ký do trở ngại khách quan về thủ tục hành chính.'},
+{n:53,code:'53/2022/AL',field:'Hôn nhân & gia đình',up:false,title:'Hủy việc kết hôn trái pháp luật',
+summary:'Nam nữ chung sống như vợ chồng trước 03/01/1987 không đăng ký, có tổ chức lễ cưới → hôn nhân thực tế. Khi chưa chấm dứt quan hệ hôn nhân thực tế mà một bên lại đăng ký kết hôn với người khác tại cơ quan có thẩm quyền.',
+issue:'Một bên yêu cầu hủy việc kết hôn trái pháp luật của người đang có quan hệ hôn nhân thực tế chưa chấm dứt.',
+laws:'Điểm c khoản 2 Điều 5, điểm a khoản 2 Điều 10, khoản 1 Điều 11, khoản 1 Điều 122 Luật HN&GĐ 2014; khoản 1 Điều 29 BLTTDS 2015; điểm a khoản 3 Nghị quyết 35/2000/NQ-QH10; Thông tư liên tịch 01/2001 và 01/2016.',
+hold:'Quan hệ hôn nhân thực tế chưa chấm dứt; việc một bên đăng ký kết hôn với người khác là trái pháp luật → chấp nhận yêu cầu hủy việc kết hôn trái pháp luật.'},
+{n:54,code:'54/2022/AL',field:'Hôn nhân & gia đình',up:false,title:'Quyền nuôi con dưới 36 tháng tuổi khi ly hôn',
+summary:'Vợ chồng ly thân khi con khoảng 4 tháng tuổi; vợ về nhà mẹ đẻ, để con cho chồng nuôi. Hơn một năm sau ly hôn, con vẫn dưới 36 tháng. Mẹ được luật ưu tiên nhưng thực tế đã không trực tiếp chăm sóc; cha đang trực tiếp nuôi tốt hơn.',
+issue:'Cha và mẹ tranh chấp quyền trực tiếp nuôi con dưới 36 tháng khi ly hôn; yêu cầu Tòa xác định giao con cho ai.',
+laws:'Khoản 2, khoản 3 Điều 81 Luật Hôn nhân và gia đình 2014.',
+hold:'Con dưới 36 tháng tuổi không đương nhiên giao cho mẹ; nếu mẹ không đủ điều kiện trực tiếp trông nom, chăm sóc, nuôi dưỡng, giáo dục con thì Tòa giao con cho cha trực tiếp nuôi căn cứ quyền lợi mọi mặt của con.'},
+{n:55,code:'55/2022/AL',field:'Dân sự',up:false,title:'Công nhận hiệu lực hợp đồng vi phạm điều kiện về hình thức',
+summary:'Hợp đồng chuyển nhượng quyền sử dụng đất xác lập trước 01/01/2017, chưa được công chứng/chứng thực (vi phạm hình thức), nhưng bên nhận chuyển nhượng đã thực hiện ít nhất 2/3 nghĩa vụ.',
+issue:'Bên nhận chuyển nhượng yêu cầu công nhận hợp đồng đất vi phạm hình thức nhưng đã thực hiện 2/3 nghĩa vụ; tranh chấp hiệu lực hợp đồng theo BLDS 2015.',
+laws:'Điều 129, khoản 1 Điều 502, điểm b khoản 1 Điều 688 Bộ luật Dân sự 2015; điểm a khoản 3 Điều 167, khoản 1 Điều 188 Luật Đất đai 2013.',
+hold:'Áp dụng khoản 2 Điều 129 BLDS 2015 → khi một bên đã thực hiện ít nhất 2/3 nghĩa vụ, Tòa công nhận hiệu lực của hợp đồng dù vi phạm điều kiện về hình thức.'},
+{n:56,code:'56/2022/AL',field:'Dân sự',up:false,title:'Giải quyết tranh chấp về di dời mồ mả',
+summary:'Người chồng chết được chôn cất trên phần đất của người thân bên nhà chồng. Người vợ muốn di dời phần mộ/hài cốt của chồng về đất gia đình mình để chăm sóc, quản lý thì bị các thành viên gia đình bên chồng ngăn cản.',
+issue:'Người vợ khởi kiện yêu cầu chấm dứt hành vi ngăn cản việc di dời mồ mả của chồng.',
+laws:'Khoản 1 Điều 7, Điều 11, khoản 1 Điều 39 Bộ luật Dân sự 2015; Điều 4 Bộ luật Tố tụng dân sự 2015.',
+hold:'Vợ hợp pháp có quyền thăm nom, chăm sóc, quản lý mồ mả của chồng, phù hợp đạo lý và thuần phong mỹ tục → Tòa buộc bên ngăn cản chấm dứt hành vi cản trở việc di dời hài cốt.'},
+{n:57,code:'57/2023/AL',field:'Hình sự',up:false,title:'Hành vi gian dối nhằm tiếp cận tài sản trong tội Cướp giật tài sản',
+summary:'Bị cáo dùng thủ đoạn gian dối (tạo niềm tin) nhằm tiếp cận và để người quản lý tài sản chuyển giao tài sản, sau đó lợi dụng sơ hở nhanh chóng tẩu thoát cùng tài sản. Vấn đề: định tội khi có yếu tố gian dối nhưng bản chất là chiếm đoạt nhanh chóng, công khai.',
+laws:'Điều 171 Bộ luật Hình sự 2015 (sửa đổi 2017).',
+hold:'Hành vi gian dối chỉ nhằm tiếp cận tài sản, sau đó nhanh chóng chiếm đoạt và tẩu thoát → bị cáo chịu TNHS về tội "Cướp giật tài sản" (không phải lừa đảo).'},
+{n:58,code:'58/2023/AL',field:'Hình sự',up:false,title:'Định khung vận chuyển động vật nguy cấp, quý, hiếm (Điều 244 BLHS)',
+summary:'Bị cáo vận chuyển 5 cá thể hổ và 1 bộ phận cơ thể không thể tách rời sự sống của cá thể hổ thứ 6. Vấn đề: xác định số lượng cá thể làm căn cứ áp dụng tình tiết định khung tăng nặng tại điểm c khoản 3 Điều 244 BLHS.',
+laws:'Điều 244 Bộ luật Hình sự 2015 (sửa đổi 2017); Điều 4 Nghị quyết 05/2018/NQ-HĐTP.',
+hold:'Bộ phận cơ thể không thể tách rời sự sống của một cá thể được tính là một cá thể; tổng số đủ định khung → bị cáo bị truy cứu TNHS theo điểm c khoản 3 Điều 244 BLHS (khung tăng nặng).'},
+{n:59,code:'59/2023/AL',field:'Hình sự',up:false,title:'Lỗi cố ý gián tiếp trong vụ án Giết người',
+summary:'Bị cáo dùng hung khí nguy hiểm tấn công bị hại; bị hại điều khiển xe mô tô bỏ chạy, bị cáo tiếp tục truy đuổi làm bị hại lo sợ tăng tốc; khi bị hại gặp tai nạn bị cáo mới dừng; bị hại tử vong. Vấn đề: xác định lỗi và tội danh khi hậu quả chết người xảy ra gián tiếp.',
+laws:'Điều 123 Bộ luật Hình sự 2015 (sửa đổi 2017).',
+hold:'Bị cáo bỏ mặc hậu quả chết người có thể xảy ra → chịu TNHS về tội "Giết người" với lỗi cố ý gián tiếp.'},
+{n:60,code:'60/2023/AL',field:'Dân sự',up:false,title:'Thời hạn, thủ tục trả thưởng xổ số kiến thiết',
+summary:'Thể lệ dự thưởng xác định thời hạn lĩnh thưởng tính theo ngày. Vé trúng giải đặc biệt đến hạn lĩnh thưởng vào thời điểm sát ngày cuối, làm phát sinh tranh chấp về cách tính thời hạn.',
+issue:'Người trúng thưởng khởi kiện công ty xổ số yêu cầu trả thưởng; tranh chấp cách tính ngày bắt đầu và ngày kết thúc thời hạn lĩnh thưởng.',
+laws:'Khoản 2 Điều 147; khoản 1, 5, 6 Điều 148 Bộ luật Dân sự 2015; khoản 1 Điều 30 Thông tư 75/2013/TT-BTC.',
+hold:'Ngày đầu tiên của thời hạn không tính, tính từ ngày tiếp theo liền kề; ngày cuối cùng nếu rơi vào ngày nghỉ/lễ thì kết thúc vào ngày làm việc tiếp theo. Theo đó người trúng thưởng vẫn còn trong thời hạn lĩnh thưởng.'},
+{n:61,code:'61/2023/AL',field:'Hôn nhân & gia đình',up:false,title:'Chấm dứt việc nuôi con nuôi khi con nuôi chưa thành niên',
+summary:'Cha mẹ nuôi và cha mẹ đẻ thống nhất giao lại con nuôi chưa thành niên cho cha mẹ đẻ nuôi dưỡng; con nuôi có nguyện vọng về sống với cha mẹ đẻ.',
+issue:'Cha mẹ nuôi yêu cầu Tòa chấm dứt việc nuôi con nuôi để giao con (chưa thành niên) lại cho cha mẹ đẻ.',
+laws:'Điều 25, 26, 27 Luật Nuôi con nuôi 2010; Điều 78 Luật Hôn nhân và gia đình 2014.',
+hold:'Khi cha mẹ đẻ, cha mẹ nuôi tự nguyện thống nhất và con nuôi có nguyện vọng về với cha mẹ đẻ thì Tòa chấp nhận yêu cầu chấm dứt việc nuôi con nuôi; quyền/nghĩa vụ giữa cha mẹ nuôi và con nuôi chấm dứt từ ngày quyết định có hiệu lực.'},
+{n:62,code:'62/2023/AL',field:'Hôn nhân & gia đình',up:false,title:'Thời điểm bắt đầu nghĩa vụ cấp dưỡng khi xác định cha cho con',
+summary:'Sau khi con sinh ra, bị đơn chưa được xác định hợp pháp là cha cho đến khi Tòa xác định.',
+issue:'Người mẹ khởi kiện yêu cầu xác định cha cho con và cấp dưỡng; tranh chấp nghĩa vụ cấp dưỡng tính từ thời điểm nào.',
+laws:'Khoản 24 Điều 3, Điều 107, Điều 110 Luật Hôn nhân và gia đình 2014.',
+hold:'Nghĩa vụ cấp dưỡng cho con chưa thành niên phát sinh kể từ khi con được sinh ra; bị đơn phải hoàn trả một phần chi phí nuôi con người mẹ đã chi từ ngày sinh đến ngày khởi kiện.'},
+{n:63,code:'63/2023/AL',field:'Hành chính',up:false,title:'Xem xét quyết định hành chính có liên quan đến hành vi hành chính bị khiếu kiện',
+summary:'Người khởi kiện khiếu kiện cả quyết định hành chính và hành vi hành chính có liên quan, nhưng chỉ còn thời hiệu khởi kiện đối với hành vi hành chính (quyết định hành chính đã hết thời hiệu).',
+issue:'Người khởi kiện yêu cầu giải quyết khiếu kiện hành vi hành chính; Tòa có được xem xét tính hợp pháp của quyết định hành chính liên quan (đã hết thời hiệu) không.',
+laws:'Điều 6 và Điều 116 Luật Tố tụng hành chính 2015.',
+hold:'Tòa phải giải quyết yêu cầu đối với hành vi hành chính và có quyền xem xét tính hợp pháp của quyết định hành chính có liên quan (dù quyết định đó đã hết thời hiệu khởi kiện độc lập).'},
+{n:64,code:'64/2023/AL',field:'Hình sự',up:false,title:'Định khung và tình tiết "có tổ chức" trong tội Bắt cóc nhằm chiếm đoạt tài sản',
+summary:'Các bị cáo câu kết, phân công vai trò bắt giữ người nhằm chiếm đoạt tài sản (mục đích 50–200 triệu) nhưng chưa chiếm đoạt được. Vấn đề: thời điểm hoàn thành tội phạm, căn cứ định khung và áp dụng tình tiết "có tổ chức".',
+laws:'Điểm a, điểm e khoản 2 Điều 169 Bộ luật Hình sự 2015 (sửa đổi 2017).',
+hold:'Tội bắt cóc nhằm chiếm đoạt tài sản hoàn thành từ thời điểm bắt giữ con tin, không phụ thuộc đã chiếm đoạt được tài sản; định khung theo số tiền mục đích chiếm đoạt; có câu kết, phân công vai trò thì áp dụng tình tiết "có tổ chức".'},
+{n:65,code:'65/2023/AL',field:'Hình sự',up:false,title:'Truy cứu trách nhiệm hình sự tội Mua bán người',
+summary:'Bị hại ban đầu tự nguyện đi theo (ví dụ tìm việc), nhưng sau đó bị bị cáo chuyển giao cho người khác và bị cưỡng bức lao động/bóc lột trái ý muốn nhằm thu lợi. Vấn đề: sự tự nguyện ban đầu có loại trừ TNHS về tội mua bán người không.',
+laws:'Điều 150 Bộ luật Hình sự 2015 (sửa đổi 2017); Nghị quyết 02/2019/NQ-HĐTP.',
+hold:'Việc bị hại ban đầu tự nguyện không loại trừ TNHS nếu sau đó họ bị chuyển giao, cưỡng bức làm việc trái ý muốn nhằm thu lợi → truy cứu TNHS về tội "Mua bán người".'},
+{n:66,code:'66/2023/AL',field:'Hình sự',up:false,title:'Xác định tội danh Mua bán người',
+summary:'Bị cáo lừa gạt, hứa hẹn lợi ích làm bị hại tin tưởng, tự nguyện theo bị cáo ra nước ngoài; sau đó giao bị hại cho người khác để nhận tiền. Vấn đề: định tội "Mua bán người" hay "Tổ chức cho người khác trốn đi nước ngoài trái phép".',
+laws:'Điều 150 và Điều 349 Bộ luật Hình sự 2015 (sửa đổi 2017); Nghị quyết 02/2019/NQ-HĐTP.',
+hold:'Vì bị cáo có động cơ giao bị hại cho người khác để nhận lợi ích vật chất → định tội "Mua bán người" (Điều 150), không phải "Tổ chức cho người khác trốn đi nước ngoài trái phép" (Điều 349).'},
+{n:67,code:'67/2023/AL',field:'Dân sự',up:false,title:'Người được nhận hiện vật khi chia tài sản chung',
+summary:'Vụ chia tài sản chung là nhà và quyền sử dụng đất; một bên là người cao tuổi, sức yếu, đã tạo lập, quản lý, sử dụng nhà đất ổn định lâu dài và bị hạn chế khả năng tạo lập chỗ ở khác.',
+issue:'Các đồng sở hữu yêu cầu chia tài sản chung (nhà đất); tranh chấp ai được nhận hiện vật và ai nhận giá trị.',
+laws:'Điều 209 và Điều 219 Bộ luật Dân sự 2015.',
+hold:'Khi một đồng sở hữu là người cao tuổi, đã tạo lập/quản lý/sử dụng tài sản ổn định lâu dài và khó tạo lập chỗ ở khác → Tòa giao hiện vật (nhà đất) cho người đó sở hữu, sử dụng và buộc thanh toán phần giá trị tương ứng cho các đồng sở hữu còn lại.'},
+{n:68,code:'68/2023/AL',field:'Dân sự',up:false,title:'Quyền nhận di sản bằng hiện vật là nhà ở của người thừa kế định cư nước ngoài',
+summary:'Trong vụ chia di sản thừa kế, có người thừa kế là người Việt Nam định cư ở nước ngoài; di sản là nhà ở và có thể phân chia bằng hiện vật.',
+issue:'Người thừa kế là người Việt Nam định cư nước ngoài yêu cầu được nhận di sản bằng hiện vật là nhà ở (thay vì chỉ nhận giá trị).',
+laws:'Điểm d khoản 1 Điều 169, Điều 186 Luật Đất đai 2013; khoản 1, điểm b khoản 2 Điều 8 Luật Nhà ở 2014.',
+hold:'Người thừa kế là người Việt Nam định cư nước ngoài được nhận di sản bằng hiện vật là nhà ở khi đủ điều kiện được sở hữu/nhận nhà ở theo Luật Nhà ở 2014 và di sản có thể phân chia bằng hiện vật.'},
+{n:69,code:'69/2023/AL',field:'Lao động',up:false,title:'Thẩm quyền của Trọng tài thương mại với tranh chấp thỏa thuận bảo mật và không cạnh tranh',
+summary:'Người lao động và doanh nghiệp ký thỏa thuận bảo mật thông tin và không cạnh tranh (NDA/NCA), có điều khoản chọn Trọng tài thương mại. Có ý kiến cho rằng đây là tranh chấp lao động thuộc thẩm quyền Tòa án.',
+issue:'Một bên đưa tranh chấp thỏa thuận bảo mật và không cạnh tranh ra trọng tài; tranh chấp này thuộc thẩm quyền của Trọng tài thương mại hay Tòa án.',
+laws:'Khoản 2 Điều 2, Điều 13, khoản 4 Điều 35 Luật Trọng tài thương mại 2010; khoản 2 Điều 3 Bộ luật Dân sự 2015; Điều 6 Nghị quyết 01/2014/NQ-HĐTP.',
+hold:'Thỏa thuận bảo mật thông tin và không cạnh tranh là thỏa thuận độc lập với hợp đồng lao động; tranh chấp phát sinh từ thỏa thuận này thuộc thẩm quyền giải quyết của Trọng tài thương mại.'},
+{n:70,code:'70/2023/AL',field:'Lao động',up:false,title:'Chấm dứt hợp đồng lao động với cán bộ công đoàn không chuyên trách',
+summary:'Người lao động ký hợp đồng lao động xác định thời hạn; trong thời hạn hợp đồng, trúng cử Chủ tịch công đoàn cơ sở nhưng việc ứng cử và trúng cử không hợp lệ. Khi hết thời hạn hợp đồng, người sử dụng lao động ra quyết định chấm dứt.',
+issue:'Người lao động khởi kiện về việc bị chấm dứt hợp đồng lao động; tranh chấp có được hưởng cơ chế bảo vệ cán bộ công đoàn không khi việc trúng cử không hợp lệ.',
+laws:'Điều 36 và Điều 192 Bộ luật Lao động 2012 (Điều 36 tương ứng Điều 34 BLLĐ 2019).',
+hold:'Vì việc ứng cử/trúng cử cán bộ công đoàn không hợp lệ nên người lao động không được hưởng cơ chế bảo vệ đặc thù; khi hết thời hạn hợp đồng, việc chấm dứt hợp đồng lao động là đúng quy định pháp luật.'},
+{n:71,code:'71/2024/AL',field:'Dân sự',up:false,title:'Đình chỉ vụ án vì sự việc đã được giải quyết bằng quyết định có hiệu lực của cơ quan nhà nước',
+summary:'Tranh chấp quyền sử dụng đất trước đó đã được UBND có thẩm quyền giải quyết bằng quyết định hành chính đã có hiệu lực. Vụ việc vừa đã được giải quyết xong, vừa không thuộc thẩm quyền của Tòa án.',
+issue:'Đương sự khởi kiện tranh chấp quyền sử dụng đất tại Tòa; Tòa thụ lý giải quyết hay đình chỉ.',
+laws:'Khoản 1, 2 Điều 34; điểm c, d khoản 1 Điều 192; điểm g khoản 1 Điều 217 Bộ luật Tố tụng dân sự 2015; Điều 38 Luật Đất đai 1993.',
+hold:'Tòa phải đình chỉ giải quyết vụ án vì sự việc đã được giải quyết bằng quyết định có hiệu lực của cơ quan nhà nước có thẩm quyền và không thuộc thẩm quyền giải quyết của Tòa án.'},
+{n:72,code:'72/2024/AL',field:'Dân sự',up:false,title:'Di sản là quyền sử dụng đất khi di chúc không thể hiện diện tích cụ thể',
+summary:'Người để lại di sản lập di chúc hợp pháp định đoạt quyền sử dụng đất. Di chúc xác định tứ cận (ranh giới) thửa đất nhưng không thể hiện diện tích cụ thể; các bên không tranh chấp về tứ cận.',
+issue:'Người thừa kế yêu cầu chia di sản theo di chúc; tranh chấp xác định di sản là phần đất nào, diện tích bao nhiêu khi di chúc không ghi diện tích.',
+laws:'Các Điều 624, 630, 634 Bộ luật Dân sự 2015.',
+hold:'Di sản thừa kế là quyền sử dụng đất theo diện tích đo đạc thực tế tương ứng với tứ cận thể hiện trong di chúc.'},
+{n:73,code:'73/2025/AL',field:'Hình sự',up:false,title:'Tình tiết tăng nặng "Cố tình thực hiện tội phạm đến cùng"',
+summary:'Bị cáo dùng hung khí nguy hiểm tấn công vào vùng trọng yếu cơ thể bị hại làm bị hại rơi xuống biển. Sau đó bị cáo đe dọa những người khác không cho cứu giúp bị hại. Vấn đề: hành vi ngăn cản cứu giúp có cấu thành tình tiết tăng nặng "Cố tình thực hiện tội phạm đến cùng" không.',
+laws:'Điểm e khoản 1 Điều 52, Điều 123 Bộ luật Hình sự 2015 (sửa đổi 2017, 2024, 2025).',
+hold:'Hành vi đe dọa không cho người khác cứu giúp bị hại là cố tình thực hiện tội phạm đến cùng; bị cáo phải chịu tình tiết tăng nặng TNHS tại điểm e khoản 1 Điều 52 BLHS.'},
+{n:74,code:'74/2025/AL',field:'Hình sự',up:false,title:'Trộm cắp tài sản đối với hành vi chiếm đoạt tài sản của mình đang bị tạm giữ',
+summary:'Cơ quan có thẩm quyền lập biên bản vi phạm hành chính giao thông và tạm giữ phương tiện (xe) để xử lý. Sau đó chính chủ phương tiện lén lút vào khu vực cơ quan cất giữ tang vật để lấy lại xe của mình đem giấu nơi khác. Vấn đề: lấy lại chính tài sản của mình đang bị tạm giữ thì định tội gì.',
+laws:'Khoản 1 Điều 173 Bộ luật Hình sự 2015 (sửa đổi 2017, 2024, 2025).',
+hold:'Bị cáo phải bị truy cứu trách nhiệm hình sự về tội "Trộm cắp tài sản".'},
+{n:75,code:'75/2025/AL',field:'Hình sự',up:false,title:'Thủ đoạn gian dối để trộm cắp tài sản',
+summary:'Chủ sở hữu không trông coi tài sản và cũng không giao cho ai trông coi. Bị cáo dùng thủ đoạn gian dối để người không được giao trông coi tin rằng bị cáo là người thân quen của chủ sở hữu, rồi giao tài sản cho bị cáo; bị cáo chiếm đoạt. Vấn đề: gian dối với người không có trách nhiệm quản lý là lừa đảo hay trộm cắp.',
+laws:'Khoản 1 Điều 173 Bộ luật Hình sự 2015 (sửa đổi 2017, 2024, 2025).',
+hold:'Bị cáo bị truy cứu TNHS về tội "Trộm cắp tài sản" (không phải lừa đảo, vì người bị lừa không phải chủ tài sản/người có trách nhiệm quản lý hợp pháp).'},
+{n:76,code:'76/2025/AL',field:'Hình sự',up:false,title:'Tịch thu sung vào ngân sách Nhà nước công cụ, phương tiện phạm tội chưa sang tên',
+summary:'Bị cáo mua xe nhưng chưa làm thủ tục sang tên; bên bán xác nhận đã bán và không tranh chấp quyền sở hữu. Pháp lý xe vẫn đứng tên người khác nhưng thực tế đã thuộc bị cáo. Bị cáo dùng xe làm công cụ, phương tiện phạm tội. Vấn đề: có tịch thu được phương tiện chưa sang tên không.',
+laws:'Điểm a khoản 1 Điều 47 Bộ luật Hình sự 2015 (sửa đổi 2017, 2024, 2025); điểm a khoản 2 Điều 106 Bộ luật Tố tụng hình sự 2015.',
+hold:'Tòa phải xác định xe là tài sản của bị cáo và tuyên tịch thu sung vào ngân sách Nhà nước.'},
+{n:77,code:'77/2025/AL',field:'Kinh doanh thương mại',up:false,title:'Vi phạm nghĩa vụ cung cấp thông tin tình trạng bệnh hiểm nghèo của bên mua bảo hiểm',
+summary:'Trong đơn yêu cầu bảo hiểm, bên mua không cung cấp thông tin về tình trạng bệnh hiểm nghèo của mình dù biết rõ và đã đi khám, chữa nhiều lần. Trong thời hạn hợp đồng, bên mua chết do chính bệnh hiểm nghèo đã che giấu.',
+issue:'Người thụ hưởng khởi kiện yêu cầu doanh nghiệp bảo hiểm chi trả; tranh chấp bên mua có vi phạm nghĩa vụ cung cấp thông tin bệnh hiểm nghèo không.',
+laws:'Điểm b khoản 2 Điều 18, khoản 2 Điều 19 Luật Kinh doanh bảo hiểm 2000 (tương ứng điểm a khoản 2 Điều 21, khoản 2 Điều 22 Luật KDBH 2022).',
+hold:'Bên mua bảo hiểm đã vi phạm nghĩa vụ cung cấp thông tin khi giao kết hợp đồng bảo hiểm nhân thọ; doanh nghiệp bảo hiểm không phải chịu trách nhiệm bảo hiểm về rủi ro đã phát sinh.'},
+{n:78,code:'78/2025/AL',field:'Kinh doanh thương mại',up:false,title:'Xác định mục đích góp vốn vào công ty',
+summary:'Sau khi công ty đã thành lập, các bên thỏa thuận đưa tiền vào công ty và chia lợi nhuận nhưng không đăng ký tăng vốn điều lệ.',
+issue:'Người đưa tiền vào công ty khởi kiện yêu cầu công nhận tư cách thành viên/cổ đông; tranh chấp khoản tiền là góp vốn (tăng vốn điều lệ) hay chỉ là góp vốn kinh doanh.',
+laws:'Khoản 13 Điều 4 Luật Doanh nghiệp 2014 (tương ứng khoản 18 Điều 4 Luật Doanh nghiệp 2020).',
+hold:'Nếu sau khi thành lập công ty, các bên thỏa thuận góp vốn và chia lợi nhuận nhưng không đăng ký tăng vốn điều lệ thì đây chỉ là góp vốn kinh doanh; người góp vốn không đương nhiên trở thành thành viên công ty.'},
+{n:79,code:'79/2025/AL',field:'Dân sự',up:false,title:'Chủ thể giao kết và hiệu lực của hợp đồng đặt cọc',
+summary:'Hợp đồng đặt cọc bảo đảm giao kết hợp đồng chuyển nhượng quyền sử dụng đất được lập trong thời gian tài sản đang thế chấp tại ngân hàng; bên nhận đặt cọc không phải chủ sở hữu tài sản nhưng được ủy quyền giao kết. Bên có nghĩa vụ sau đó từ chối ký hợp đồng chuyển nhượng vì cho rằng giá quá cao.',
+issue:'Bên đặt cọc khởi kiện yêu cầu xử lý theo thỏa thuận đặt cọc (phạt cọc); tranh chấp hiệu lực hợp đồng đặt cọc và tư cách của bên nhận đặt cọc.',
+laws:'Khoản 2 Điều 3, Điều 117, Điều 328 Bộ luật Dân sự 2015.',
+hold:'(i) Hợp đồng đặt cọc thỏa mãn điều kiện có hiệu lực của giao dịch dân sự (Điều 117) nên hợp pháp, có hiệu lực; là hợp đồng độc lập, việc tài sản đang thế chấp ngân hàng không ảnh hưởng hiệu lực. (ii) Bên nhận đặt cọc tuy không sở hữu tài sản nhưng được ủy quyền giao kết thì có quyền xác lập hợp đồng đặt cọc; bên vi phạm chịu mất cọc theo khoản 2 Điều 328.'},
+{n:80,code:'80/2025/AL',field:'Dân sự',up:false,title:'Tặng cho vé số của vợ, chồng',
+summary:'Một bên vợ/chồng tặng cho người khác tài sản là tờ vé số chưa mở thưởng. Người nhận không biết và không buộc phải biết tờ vé số là tài sản chung hay riêng. Sau đó tờ vé số trúng thưởng giá trị lớn.',
+issue:'Người vợ/chồng còn lại khởi kiện về việc tặng cho vé số; tranh chấp việc tặng cho có cần sự đồng ý của mình không và đối tượng tặng cho là vé số chưa trúng hay tiền trúng thưởng.',
+laws:'Điều 457, khoản 1 Điều 458 Bộ luật Dân sự 2015; khoản 2 Điều 32, Điều 35 Luật Hôn nhân và gia đình 2014.',
+hold:'Đối tượng tặng cho là tờ vé số chưa mở thưởng — động sản không phải đăng ký quyền sở hữu; việc tặng cho không cần sự đồng ý của người vợ/chồng còn lại (giá trị vé số tại thời điểm tặng cho không đáng kể, không thuộc trường hợp định đoạt cần đồng ý).'},
+{n:81,code:'81/2025/AL',field:'Dân sự',up:false,title:'Xác định tranh chấp dân sự về đòi lại tài sản',
+summary:'Hai công ty ký hợp đồng dịch vụ. Sau khi hoàn thành, hai bên thỏa thuận chấm dứt hợp đồng và bên có nghĩa vụ xác nhận khoản phí dịch vụ phải trả nhưng không trả.',
+issue:'Bên cung cấp dịch vụ khởi kiện đòi tiền; bên có nghĩa vụ yêu cầu áp dụng thời hiệu khởi kiện — tranh chấp bản chất là tranh chấp hợp đồng hay đòi lại tài sản.',
+laws:'Khoản 2 Điều 155 Bộ luật Dân sự 2015 (trường hợp không áp dụng thời hiệu khởi kiện).',
+hold:'Đây là tranh chấp dân sự về đòi lại tài sản (không còn là tranh chấp hợp đồng dịch vụ), do đó không áp dụng thời hiệu khởi kiện.'},
+{n:82,code:'82/2025/AL',field:'Hôn nhân & gia đình',up:false,title:'Tài sản chung của vợ chồng hình thành trước khi đăng ký kết hôn',
+summary:'Vợ chồng có một bên là người nước ngoài, đã có tờ khai đăng ký kết hôn và tổ chức lễ cưới. Bên là người Việt Nam đứng tên nhận chuyển nhượng quyền sử dụng đất và được cấp giấy chứng nhận trước khi đăng ký kết hôn; bên chuyển nhượng xác nhận đã chuyển nhượng cho cả hai vợ chồng.',
+issue:'Một bên vợ/chồng yêu cầu xác định và chia tài sản; tranh chấp đất do một người đứng tên trước khi kết hôn là tài sản chung hay riêng.',
+laws:'Khoản 7 Điều 8, Điều 27, 32, 95 Luật HN&GĐ 2000 (tương ứng khoản 13 Điều 3, Điều 33, 43, 59 Luật HN&GĐ 2014); Điều 215 Bộ luật Dân sự 2005.',
+hold:'Quyền sử dụng đất do một bên đứng tên nhận chuyển nhượng là tài sản chung của vợ chồng; việc phân chia dựa trên chứng cứ về nguồn gốc hình thành, tỷ lệ đóng góp và công sức thực tế (không mặc định chia đôi).'},
+{n:83,code:'83/2026/AL',field:'Kinh doanh thương mại',up:true,title:'Trách nhiệm bồi thường của doanh nghiệp bảo hiểm khi chưa xác định được người gây thiệt hại',
+summary:'Hợp đồng bảo hiểm xe cơ giới đang có hiệu lực. Xe bị cháy gây thiệt hại tài sản (sự kiện bảo hiểm). Cơ quan giám định kết luận nguyên nhân cháy do con người gây ra, nhưng cơ quan nhà nước có thẩm quyền chưa xác định được ai là người gây thiệt hại.',
+issue:'Người được bảo hiểm khởi kiện yêu cầu doanh nghiệp bảo hiểm bồi thường; tranh chấp doanh nghiệp bảo hiểm có phải bồi thường khi chưa xác định được người gây thiệt hại không.',
+laws:'Điểm e khoản 1 Điều 17, Điều 49 Luật Kinh doanh bảo hiểm 2000 (tương ứng điểm e khoản 1 Điều 20, Điều 54 Luật KDBH 2022).',
+hold:'Doanh nghiệp bảo hiểm có trách nhiệm bồi thường thiệt hại tài sản cho người được bảo hiểm, nhưng được bảo lưu/chuyển quyền yêu cầu bồi hoàn theo quy định pháp luật.'},
+{n:84,code:'84/2026/AL',field:'Hôn nhân & gia đình',up:true,title:'Chấm dứt việc nuôi con nuôi chưa thành niên khi người nhận nuôi (độc thân) chết',
+summary:'Cha mẹ đẻ đồng ý cho người chị ruột của cha (người độc thân) nhận con làm con nuôi; chính quyền đã công nhận. Sau đó người nhận nuôi qua đời.',
+issue:'Cha mẹ đẻ yêu cầu chấm dứt việc nuôi con nuôi và khôi phục quyền, nghĩa vụ cha mẹ với con sau khi người nhận nuôi (độc thân) chết.',
+laws:'Điều 25 và Điều 13 Luật Nuôi con nuôi 2010 (cái chết của người nhận nuôi không thuộc các căn cứ chấm dứt tại 2 điều này — án lệ bổ khuyết).',
+hold:'Sau khi người nhận con nuôi (độc thân) chết, Tòa chấp nhận yêu cầu của cha mẹ đẻ về chấm dứt việc nuôi con nuôi đối với con chưa thành niên.'},
+{n:85,code:'85/2026/AL',field:'Kinh doanh thương mại',up:true,title:'Tham gia tố tụng của doanh nghiệp bảo hiểm thành viên theo hợp đồng đồng bảo hiểm',
+summary:'Hợp đồng nguyên tắc đồng bảo hiểm xác định doanh nghiệp bảo hiểm đứng đầu có nghĩa vụ giao kết với bên mua, giải quyết và chi trả bồi thường, có quyền yêu cầu các doanh nghiệp thành viên góp tiền theo tỷ lệ; không quy định doanh nghiệp thành viên trực tiếp chịu trách nhiệm với bên mua.',
+issue:'Bên mua bảo hiểm khởi kiện doanh nghiệp bảo hiểm đứng đầu; có phải đưa các doanh nghiệp bảo hiểm thành viên vào tham gia tố tụng với tư cách người có quyền lợi, nghĩa vụ liên quan không.',
+laws:'Khoản 4 Điều 68 Bộ luật Tố tụng dân sự 2015 (sửa đổi, bổ sung các năm 2019, 2020, 2022, 2023, 2024 và 2025).',
+hold:'Các doanh nghiệp bảo hiểm thành viên không phải là người có quyền lợi, nghĩa vụ liên quan trong vụ án và không đưa vào tham gia tố tụng (vì chỉ doanh nghiệp đứng đầu có quan hệ hợp đồng trực tiếp với bên mua).'},
+{n:86,code:'86/2026/AL',field:'Kinh doanh thương mại',up:true,title:'Sự kiện pháp lý làm phát sinh căn cứ xem xét kháng nghị theo thủ tục tái thẩm',
+summary:'Bản án buộc bị đơn (doanh nghiệp) trả tiền cho nguyên đơn (tổ chức tín dụng) trong vụ tranh chấp hợp đồng tín dụng đã có hiệu lực. Sau đó cơ quan điều tra ra quyết định khởi tố bị can đối với người đại diện bị đơn về hành vi gian dối nhằm chiếm đoạt tiền.',
+issue:'Người có thẩm quyền xem xét kháng nghị tái thẩm bản án đã có hiệu lực; quyết định khởi tố bị can có là căn cứ làm phát sinh xem xét tái thẩm không.',
+laws:'Điểm c khoản 1 Điều 192 và điểm g Điều 217 Bộ luật Tố tụng dân sự 2015 (đình chỉ giải quyết vụ án khi xử lý theo pháp luật hình sự). [Căn cứ tái thẩm Điều 352/353 BLTTDS chưa được nguồn nêu rõ — đang cập nhật.]',
+hold:'Quyết định khởi tố bị can và tài liệu kèm theo của cơ quan điều tra là sự kiện pháp lý làm phát sinh căn cứ để xem xét kháng nghị theo thủ tục tái thẩm đối với bản án, quyết định đã có hiệu lực.'},
+{n:87,code:'87/2026/AL',field:'Kinh doanh thương mại',up:true,title:'Thứ tự ưu tiên thanh toán khi xử lý tài sản bảo đảm',
+summary:'Tổ chức tín dụng ký hợp đồng tín dụng và thế chấp tài sản là tàu biển với khách hàng. Hai bên thỏa thuận để bên thứ ba sửa chữa, nâng cấp, trông giữ tàu nhằm tăng giá trị tài sản bảo đảm. Sau đó bên vay vi phạm nghĩa vụ trả nợ.',
+issue:'Ngân hàng khởi kiện yêu cầu xử lý tài sản bảo đảm, còn bên thứ ba yêu cầu thanh toán chi phí sửa chữa, trông giữ; tranh chấp thứ tự ưu tiên thanh toán khi xử lý tài sản bảo đảm.',
+laws:'Điều 307 Bộ luật Dân sự 2015; khoản 12 Điều 1 Nghị định 11/2012/NĐ-CP ngày 22/02/2012 (sửa đổi, bổ sung Nghị định 163/2006/NĐ-CP về giao dịch bảo đảm).',
+hold:'Khi xử lý tài sản bảo đảm, Tòa phải ưu tiên thanh toán trước cho bên thứ ba các chi phí tiền lương người lao động, tiền thuê và tiền trông giữ tài sản liên quan đến việc sửa chữa, nâng cấp, trông giữ tài sản bảo đảm (rồi mới đến nợ gốc, lãi của ngân hàng).'},
+{n:88,code:'88/2026/AL',field:'Hôn nhân & gia đình',up:true,title:'Ủy quyền tham gia tố tụng trong vụ án tranh chấp về nuôi con',
+summary:'Trong vụ án ly hôn có tranh chấp về nuôi con, đương sự ủy quyền cho người khác thay mặt mình tham gia tố tụng đối với phần tranh chấp về nuôi con.',
+issue:'Đương sự trong vụ ly hôn ủy quyền cho người khác tham gia tố tụng phần tranh chấp nuôi con; việc ủy quyền này có được chấp nhận không (do liên quan quyền nhân thân).',
+laws:'Khoản 4 Điều 85 Bộ luật Tố tụng dân sự 2015; khoản 1 Điều 25, Điều 39, Điều 562 Bộ luật Dân sự 2015; khoản 4 Điều 68 Luật Hôn nhân và gia đình 2014.',
+hold:'Trong vụ án ly hôn, tranh chấp về nuôi con, Tòa không chấp nhận việc đương sự ủy quyền cho người khác tham gia tố tụng đối với phần tranh chấp về nuôi con (vì gắn với quyền nhân thân).'},
+{n:89,code:'89/2026/AL',field:'Hành chính',up:true,title:'Bồi thường, hỗ trợ đối với nhà mua thanh lý trên đất cơ quan Nhà nước khi đất bị thu hồi',
+summary:'Cơ quan nhà nước bán thanh lý tài sản là nhà xây trên phần đất trụ sở của cơ quan, không có thỏa thuận chuyển nhượng quyền sử dụng đất, trước khi có quyết định thu hồi phần đất. Bên mua sử dụng nhà để ở và đã tạo lập, tôn tạo tài sản trên đất. Sau đó cơ quan nhà nước thu hồi phần đất này.',
+issue:'Người mua nhà thanh lý khởi kiện yêu cầu bồi thường, hỗ trợ khi bị thu hồi đất; tranh chấp có được bồi thường khi không đủ điều kiện bồi thường về đất không.',
+laws:'Luật Đất đai 2003 — bồi thường thiệt hại về tài sản gắn liền với đất bị thu hồi. [Số điều cụ thể đang cập nhật.]',
+hold:'Khi nhà nước thu hồi đất, bên mua tài sản trên đất không đủ điều kiện được bồi thường về đất nhưng được xem xét bồi thường, hỗ trợ đối với tài sản trên đất bị thu hồi.'},
+{n:90,code:'90/2026/AL',field:'Hành chính',up:true,title:'Thẩm quyền hủy giấy chứng nhận quyền sử dụng đất của Tòa án',
+summary:'UBND cấp giấy chứng nhận quyền sử dụng đất sai, chồng lấn lên diện tích đất của người liền kề. Người được cấp sai sau đó chuyển nhượng cho người thứ ba; người thứ ba được cấp đổi giấy chứng nhận.',
+issue:'Người liền kề (bị lấn đất) khởi kiện yêu cầu hủy giấy chứng nhận quyền sử dụng đất cấp chồng lấn; Tòa có thẩm quyền hủy không và việc chuyển nhượng cho bên thứ ba có hợp pháp hóa sai sót ban đầu không.',
+laws:'Khoản 1 Điều 3, khoản 2 Điều 193, khoản 1 Điều 241 Luật Tố tụng hành chính; điểm d khoản 2 Điều 106 Luật Đất đai 2013; khoản 5 Điều 87 Nghị định 43/2014/NĐ-CP.',
+hold:'Giấy chứng nhận quyền sử dụng đất là quyết định hành chính, thuộc thẩm quyền Tòa án xem xét tính hợp pháp và tuyên hủy một phần hoặc toàn bộ; việc chuyển nhượng cho bên thứ ba không hợp pháp hóa sai sót trong quá trình cấp giấy ban đầu.'}
+];
+
+// ---------- date-aware status ----------
+const CUTOFF=new Date(2026,6,1); // 01/7/2026 (tháng 6 = July, 0-indexed)
+const AFTER=new Date()>=CUTOFF;  // tự cập nhật theo ngày mở trang
+function isUp(a){return a.up && !AFTER;}
+const activeNow=AL.filter(a=>!isUp(a)).length;
+const upNow=AL.filter(a=>isUp(a)).length;
+
+// ---------- header stats (dynamic) ----------
+(function(){
+  let h='<div class="bigstat"><b>90</b><span>án lệ đã công bố</span></div>'+
+        '<div class="bigstat"><b>'+activeNow+'</b><span>đang có hiệu lực</span></div>';
+  if(upNow>0) h+='<div class="bigstat"><b>'+upNow+'</b><span>áp dụng từ 01/7/2026</span></div>';
+  h+='<div class="bigstat"><b>6</b><span>lĩnh vực</span></div>';
+  document.getElementById('countline').innerHTML=h;
+  document.getElementById('dynNote').textContent = AFTER
+     ? 'Toàn bộ 90 án lệ đang có hiệu lực áp dụng.'
+     : '82 án lệ đang áp dụng · 8 án lệ (83–90) áp dụng từ 01/7/2026.';
+})();
+
+// ---------- controls state ----------
+let curField='all',curStatus='all',curQ='';
+const elContent=document.getElementById('content'),elInfo=document.getElementById('resinfo'),elNo=document.getElementById('noresult');
+
+function buildFieldChips(){
+  const box=document.getElementById('fieldChips');
+  const cnt={};FIELDS.forEach(f=>cnt[f.key]=AL.filter(a=>a.field===f.key).length);
+  let html='<div class="chip on" data-f="all">Tất cả <span class="n">'+AL.length+'</span></div>';
+  FIELDS.forEach(f=>html+='<div class="chip" data-f="'+f.key+'"><span class="dotc" style="background:'+f.color+'"></span>'+f.key+' <span class="n">'+cnt[f.key]+'</span></div>');
+  box.innerHTML=html;
+  box.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{box.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');curField=c.dataset.f;render();});
+}
+function buildStatusChips(){
+  const box=document.getElementById('statusChips');
+  let html='<div class="chip st on" data-st="all">Tất cả hiệu lực</div><div class="chip st" data-st="active">Đang áp dụng</div>';
+  if(upNow>0) html+='<div class="chip st" data-st="upcoming">Sắp áp dụng (01/7/2026)</div>';
+  box.innerHTML=html;
+  box.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{box.querySelectorAll('.chip').forEach(x=>x.classList.remove('on'));c.classList.add('on');curStatus=c.dataset.st;render();});
+}
+document.getElementById('search').addEventListener('input',e=>{curQ=e.target.value.toLowerCase().trim();render();});
+
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function lawsHtml(s){return s.indexOf('__PENDING__')===0?'<span class="pending">'+esc(s.replace('__PENDING__',''))+'</span>':esc(s);}
+function card(a,i){
+  const col=COLOR[a.field];
+  const up=isUp(a);
+  const stat=up?'<span class="stat upcoming"><span class="pdot"></span>Áp dụng 01/7/2026</span>':'<span class="stat active">Đang áp dụng</span>';
+  const issue=a.issue?'<div class="blk issue"><span class="lbl">❓ Vấn đề</span><p>'+esc(a.issue)+'</p></div>':'';
+  return '<div class="card" style="--fc:'+col+';animation-delay:'+Math.min(i*22,360)+'ms">'+
+    '<div class="crow"><span class="num">Án lệ '+a.n+'</span><span class="ftag">'+a.field+'</span>'+stat+'</div>'+
+    '<h3>'+esc(a.code)+' — '+esc(a.title)+'</h3>'+
+    '<div class="blk"><span class="lbl">📄 Tóm tắt vụ việc</span><p>'+esc(a.summary)+'</p></div>'+
+    issue+
+    '<div class="blk laws"><span class="lbl">§ Quy định pháp luật áp dụng</span><p>'+lawsHtml(a.laws)+'</p></div>'+
+    '<div class="blk hold"><span class="lbl">⚖️ Kết luận của Tòa án</span><p>'+esc(a.hold)+'</p></div>'+
+  '</div>';
+}
+function render(){
+  const list=AL.filter(a=>{
+    if(curField!=='all'&&a.field!==curField)return false;
+    if(curStatus==='active'&&isUp(a))return false;
+    if(curStatus==='upcoming'&&!isUp(a))return false;
+    if(curQ){const blob=(a.code+' '+a.title+' '+a.summary+' '+(a.issue||'')+' '+a.laws+' '+a.hold+' '+a.field+' án lệ '+a.n).toLowerCase();if(blob.indexOf(curQ)===-1)return false;}
+    return true;
+  });
+  elInfo.textContent='Hiển thị '+list.length+' / '+AL.length+' án lệ'+(curField!=='all'?' · '+curField:'')+(curStatus==='upcoming'?' · sắp áp dụng':'')+(curStatus==='active'?' · đang áp dụng':'');
+  if(!list.length){elContent.innerHTML='';elNo.style.display='block';return;}
+  elNo.style.display='none';
+  let html='',gi=0;
+  FIELDS.forEach(f=>{
+    const g=list.filter(a=>a.field===f.key).sort((x,y)=>x.n-y.n);
+    if(!g.length)return;
+    html+='<section class="group"><div class="ghead" style="color:'+f.color+'"><span class="gdot" style="background:'+f.color+'"></span><h2>'+f.key+'</h2><span class="gc">'+g.length+' án lệ</span><span class="gline"></span></div><div class="grid">';
+    g.forEach(a=>{html+=card(a,gi++);});
+    html+='</div></section>';
+  });
+  elContent.innerHTML=html;
+}
+
+// ---------- 3D tilt (delegated) ----------
+(function(){
+  const grids=document.getElementById('content');
+  let raf=null;
+  grids.addEventListener('mousemove',e=>{
+    const c=e.target.closest('.card');if(!c)return;
+    const r=c.getBoundingClientRect();
+    const px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+    const rx=(py-.5)*-8, ry=(px-.5)*10;
+    c.style.setProperty('--mx',(px*100)+'%');
+    c.style.setProperty('--my',(py*100)+'%');
+    if(raf)cancelAnimationFrame(raf);
+    raf=requestAnimationFrame(()=>{c.style.transform='perspective(900px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-4px)';});
+  });
+  grids.addEventListener('mouseleave',e=>{
+    const c=e.target.closest&&e.target.closest('.card');if(c)c.style.transform='';
+  },true);
+})();
+
+buildFieldChips();buildStatusChips();render();
+
+const bt=document.getElementById('backtop');
+window.addEventListener('scroll',()=>{bt.style.display=window.scrollY>500?'block':'none';});
+bt.onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+</script>
+</body>
+</html>
